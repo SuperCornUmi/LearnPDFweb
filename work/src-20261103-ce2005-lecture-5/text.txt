@@ -1,0 +1,1874 @@
+=== PDF PAGE 1 ===
+Linear Independence and Bases
+CE2005
+Linear Algebra
+Chia-Ru Chung 鍾佳儒
+Department of Computer Science and Information Engineering
+National Central University
+14 October 2026
+
+=== PDF PAGE 2 ===
+By the end of this lecture, you should be able to:
+• Explain linear dependence and independence, and relate them to geometry and 
+minimal spanning sets.
+• Test vector independence with homogeneous systems and determinants for square 
+matrices, and explain when a representation as a linear combination is unique.
+• Test independence in polynomial and function spaces, and explain what a 
+Wronskian can establish.
+• Verify a basis, determine dimension, and justify extending independent sets or 
+reducing spanning sets to a basis.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 2
+Intended Learning Outcomes
+
+=== PDF PAGE 3 ===
+Outline
+What Do Linear Dependence and Independence Mean?
+How Do Linear Systems Test Independence and Explain Unique 
+Representations?
+How Do We Test Independence of Polynomials and Functions?
+How Do Bases and Dimension Describe a Vector Space?
+1
+2
+3
+4
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 3
+
+=== PDF PAGE 4 ===
+What Do Linear Dependence and 
+Independence Mean?
+
+
+=== PDF PAGE 5 ===
+From Spanning Sets to Linear Independence
+• In this section, we look more closely at the structure of vector spaces. We consider 
+only finite generating sets.
+• A generating set is a spanning set.
+• Each vector in the vector space can be built up from its elements using addition and 
+scalar multiplication.
+• A minimal spanning set has no unnecessary elements: all its elements are needed to 
+span the vector space.
+• We must therefore examine how its vectors depend on each other. This connects 
+spanning sets from Section 3.2 to linear dependence and independence.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 5
+
+=== PDF PAGE 6 ===
+A Spanning Set with an Unnecessary Vector
+• Consider the following vectors in R³:
+• Let S be the subspace of R³ spanned by x₁, x₂, and x₃.
+• The third vector is already in the span of the first two:
+x₃ = 3x₁ + 2x₂.
+• Indeed, its entries are 3 − 4 = −1, −3 + 6 = 3, and 6 + 2 = 8. 
+• Thus, x₃ adds no new vectors to S.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 6
+ 
+8
+3
+1
+  ,
+1
+3
+2
+   ,
+2
+1
+1
+321
+
+
+
+
+
+
+
+
+
+−
+=
+
+
+
+
+
+
+
+
+
+−
+=
+
+
+
+
+
+
+
+
+
+
+−= xxx
+
+=== PDF PAGE 7 ===
+Reducing a Linear Combination
+• Any linear combination of x₁, x₂, and x₃ reduces to a linear combination of x₁ and x₂:
+α₁x₁ + α₂x₂ + α₃x₃
+= α₁x₁ + α₂x₂ + α₃(3x₁ + 2x₂)
+= (α₁ + 3α₃)x₁ + (α₂ + 2α₃)x₂.
+• Thus, S = Span(x₁, x₂, x₃) = Span(x₁, x₂).
+• Every combination of the three vectors is a combination of the first two. 
+Conversely, a combination of x₁ and x₂ is a combination of all three with coefficient 
+0 on x₃.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 7
+
+=== PDF PAGE 8 ===
+The Dependency Relation
+• The relation x₃ = 3x₁ + 2x₂ can be written as
+3x₁ + 2x₂ − x₃ = 0.
+• All three coefficients in this relation are nonzero, so
+x₁ = −(2/3)x₂ + (1/3)x₃,
+x₂ = −(3/2)x₁ + (1/2)x₃,
+x₃ = 3x₁ + 2x₂.
+Span(x₁, x₂, x₃) = Span(x₁, x₂) = Span(x₁, x₃) = Span(x₂, x₃).
+Any two of these three vectors span the same subspace S.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 8
+
+=== PDF PAGE 9 ===
+No Dependency Relation for the First Two Vectors
+• Suppose c₁x₁ + c₂x₂ = 0, where c₁ and c₂ are not both 0.
+If c₁ ≠ 0, then x₁ = −(c₂/c₁)x₂.
+If c₂ ≠ 0, then x₂ = −(c₁/c₂)x₁.
+• Either possibility makes one vector a multiple of the other.
+• But the entries of x₁ and x₂ show this is impossible:
+the first entries would require the multiple −1/2,
+whereas the second entries would require −1/3.
+• Therefore, c₁x₁ + c₂x₂ = 0 implies c₁ = c₂ = 0.
+• Span(x₁) and Span(x₂) are both proper subspaces of Span(x₁, x₂); both vectors are 
+needed.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 9
+
+=== PDF PAGE 10 ===
+Two Observations about Spanning Sets
+(I) If v₁, v₂, …, vₙ span a vector space V and one of these vectors can be written 
+as a linear combination of the other n − 1 vectors, then those n − 1 vectors 
+span V .
+(II) Given n vectors v₁, …, vₙ, it is possible to write one of the vectors as a linear 
+combination of the other n − 1 vectors if and only if there exist scalars c₁, …, 
+cₙ, not all zero, such that c₁v₁ + c₂v₂ + · · ·  + cₙvₙ = 0.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 10
+The first observation concerns the span. 
+The second expresses a dependency using a zero linear combination.
+
+=== PDF PAGE 11 ===
+Proof of Observation (I)
+Suppose vₙ is a linear combination of the other vectors:
+vₙ = β₁v₁ + β₂v₂ + ⋯ + βₙ₋₁vₙ₋₁.
+Let v be any element of V . Because v₁, …, vₙ span V ,
+v = α₁v₁ + α₂v₂ + ⋯ + αₙ₋₁vₙ₋₁ + αₙvₙ.
+Substitute the expression for vₙ into this combination:
+v = α₁v₁ + α₂v₂ + ⋯ + αₙ₋₁vₙ₋₁ + αₙ(β₁v₁ + β₂v₂ + ⋯ + βₙ₋₁vₙ₋₁).
+Distributing αₙ and collecting coefficients removes vₙ from the representation 
+without changing the vector v.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 11
+
+=== PDF PAGE 12 ===
+Completing the Proof of Observation (I)
+Collecting the coefficients from the substitution gives
+v = (α₁ + αₙβ₁)v₁ + (α₂ + αₙβ₂)v₂ + ⋯ + (αₙ₋₁ + αₙβₙ₋₁)vₙ₋₁.
+This is a linear combination of v₁, …, vₙ₋₁.
+The vector v was an arbitrary element of V , so every vector in V can be written 
+using these n − 1 vectors.
+Hence, v₁, …, vₙ₋₁ span V .
+Deleting a vector already in the span of the others does not change the vector 
+space that they span.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 12
+
+=== PDF PAGE 13 ===
+Proof of Observation (II)
+First suppose one vector, say vₙ, is a linear combination of the others:
+vₙ = α₁v₁ + α₂v₂ + ⋯ + αₙ₋₁vₙ₋₁.
+Subtract vₙ from both sides: α₁v₁ + α₂v₂ + ⋯ + αₙ₋₁vₙ₋₁ − vₙ = 0.
+Set cᵢ = αᵢ for i = 1, …, n − 1 and cₙ = −1.
+Then c₁v₁ + c₂v₂ + ⋯ + cₙvₙ = 0.
+These coefficients are not all zero because cₙ = −1.
+Thus, a vector expressed using the others produces a nonzero choice of 
+coefficients giving the zero vector.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 13
+
+=== PDF PAGE 14 ===
+The Converse in Observation (II)
+Conversely, suppose c₁v₁ + c₂v₂ + ⋯ + cₙvₙ = 0 and at least one of the coefficients, say cₙ, 
+is nonzero.
+Move the other terms to the right-hand side:
+cₙvₙ = −c₁v₁ − c₂v₂ − ⋯ − cₙ₋₁vₙ₋₁.
+Because cₙ ≠ 0, divide by cₙ:
+vₙ = (−c₁/cₙ)v₁ + (−c₂/cₙ)v₂ + ⋯ + (−cₙ₋₁/cₙ)vₙ₋₁.
+This writes vₙ as a linear combination of the others.
+Both directions are established. 
+The condition “not all zero” is what permits this division.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 14
+
+=== PDF PAGE 15 ===
+Linear Independence
+• Definition: 
+The vectors v₁, v₂, …, vₙ in a vector space V are said to be linearly independent 
+if c₁v₁ + c₂v₂ + ··· + cₙvₙ = 0 implies that all the scalars c₁, …, cₙ must equal 0.
+• Observation (II) shows that none of these vectors can be written as a linear 
+combination of the others.
+• To verify independence, we must consider every possible choice of coefficients 
+giving the zero vector and show that all those coefficients must be zero.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 15
+
+=== PDF PAGE 16 ===
+Linear Independence and Minimal Spanning Sets
+• If {v₁, v₂, …, vₙ} is a minimal spanning set, then v₁, v₂, …, vₙ are linearly independent. 
+Otherwise, Observation (II) would express one vector using the others, and 
+Observation (I) would let us delete it while still spanning V , contradicting minimality.
+• Conversely, if v₁, …, vₙ are linearly independent and span V , then {v₁, …, vₙ} is a 
+minimal spanning set. If one vector could be removed without changing the span, it 
+would be a combination of the others, contradicting Observation (II) and independence.
+• A minimal spanning set is called a basis.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 16
+
+=== PDF PAGE 17 ===
+Example 1
+• Are the vectors      and       linearly independent or linearly dependent?
+Equating corresponding entries gives
+c₁ + c₂ = 0
+c₁ + 2c₂ = 0.
+Subtracting the first equation from the second gives c₂ = 0; 
+substituting into the first gives c₁ = 0.
+The only solution is c₁ = c₂ = 0, as required.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 17
+
+
+
+
+1
+1
+
+
+
+
+2
+1
+
+
+
+=
+
+
++
+
+
+
+0
+0
+2
+1
+1
+1
+21 cc
+
+=== PDF PAGE 18 ===
+Linear Dependence
+• Definition:
+The vectors v₁, v₂, …, vₙ in a vector space V are said to be linearly dependent if 
+there exist scalars c₁, c₂, …, cₙ, not all zero, such that c₁v₁ + c₂v₂ + ··· + cₙvₙ = 0.
+• Unlike independence, dependence is established by finding one choice of 
+coefficients that are not all zero. Observation (II) then shows that at least one 
+vector can be written as a linear combination of the others.
+• The next example gives such a choice explicitly.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 18
+
+=== PDF PAGE 19 ===
+Example 2
+• Are the vectors x = (1, 2, 3)T, e1, e2, and e3 and x are linearly independent or 
+linearly dependent? 
+ c1 = 1, c2 = 2, c3 = 3, c4 = –1
+ linearly dependent
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 19
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
++
++
++
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+0
+0
+0
+3
+2
+0
+0
+0
+1
+0
+0
+ 
+0
+1
+0
+ 
+0
+0
+1
+   
+3
+2
+1
+41
+31
+21
+4321
+cc
+cc
+cc
+cccc
+
+=== PDF PAGE 20 ===
+Trivial and Nontrivial Choices of Scalars
+• For any set {v₁, v₂, …, vₙ} in a vector space V , c₁v₁ + c₂v₂ + ⋯ + cₙvₙ = 0 always 
+holds when c₁ = c₂ = ⋯ = cₙ = 0. This is the trivial choice of scalars.
+• If there are nontrivial choices of scalars for which c₁v₁ + ⋯ + cₙvₙ equals the 
+zero vector, then v₁, …, vₙ are linearly dependent.
+• If the only way this combination can equal the zero vector is for all the scalars 
+c₁, …, cₙ to be 0, then v₁, …, vₙ are linearly independent.
+• “Nontrivial” means at least one coefficient is nonzero.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 20
+
+=== PDF PAGE 21 ===
+Geometric Interpretation in R²
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 21
+c1x + c2y = 0
+c1 and c2 are not both 0,
+say c1  0, then
+x = (–c2/c1)y = k y
+x  k y
+
+=== PDF PAGE 22 ===
+Two Independent Vectors Determine a Plane
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 22
+• Let x and y be linearly independent vectors in ℝ³:
+• The points (x₁, x₂, x₃) and (y₁, y₂, y₃) do not lie on the same line through the 
+origin in 3-space.
+• Because (0, 0, 0), (x₁, x₂, x₃), and (y₁, y₂, y₃) are not collinear, they determine a 
+plane.
+• This plane is Span(x, y). We next consider where the point (z₁, z₂, z₃) lies relative 
+to this plane.
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+=
+2
+2
+1
+2
+2
+1
+   and   
+y
+y
+y
+x
+x
+x
+yx
+
+=== PDF PAGE 23 ===
+A Third Vector in the Plane
+• If (z₁, z₂, z₃) lies on this plane, 
+then z = (z₁, z₂, z₃)ᵀ is a linear combination 
+of x and y.
+• Hence x, y, and z are linearly dependent.
+• By Observation (I), adding z does not 
+enlarge the span of x and y.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 23
+
+
+=== PDF PAGE 24 ===
+A Third Vector outside the Plane
+• If (z₁, z₂, z₃) does not lie on the plane,
+then x, y, and z are linearly independent.
+• Any nontrivial zero combination must 
+involve z, because x and y are independent. 
+Solving that relation for z would place it in 
+Span(x, y), contrary to its position outside 
+the plane.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 24
+
+
+=== PDF PAGE 25 ===
+How Do Linear Systems Test Independence and 
+Explain Unique Representations?
+
+
+=== PDF PAGE 26 ===
+Example 3  Independence in ℝ³
+Which of the following collections of vectors are linearly independent in ℝ³?
+(a) (1, 1, 1)ᵀ, (1, 1, 0)ᵀ, (1, 0, 0)ᵀ
+(b) (1, 0, 1)ᵀ, (0, 1, 0)ᵀ
+(c) (1, 2, 4)ᵀ, (2, 1, 3)ᵀ, (4, −1, 1)ᵀ
+• For each collection, form a linear combination equal to zero.
+• We must determine whether its coefficients must all be zero.
+• The number of vectors need not equal the number of entries.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 26
+
+=== PDF PAGE 27 ===
+Example 3(a)  Only the Trivial Solution
+We must show that
+c₁(1, 1, 1)ᵀ + c₂(1, 1, 0)ᵀ + c₃(1, 0, 0)ᵀ = (0, 0, 0)ᵀ 
+is possible only if the scalars c₁, c₂, c₃ are all zero.
+Equating the three entries gives
+c₁ + c₂ + c₃ = 0
+c₁ + c₂ = 0
+c₁ = 0
+The third equation gives c₁ = 0; the second then gives c₂ = 0; the first then gives c₃ = 0.
+The only solution is c₁ = c₂ = c₃ = 0.
+Therefore, the three vectors are linearly independent.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 27
+
+=== PDF PAGE 28 ===
+Example 3(b)  Two Independent Vectors
+If
+c₁(1, 0, 1)ᵀ + c₂(0, 1, 0)ᵀ = (0, 0, 0)ᵀ,
+then
+(c₁, c₂, c₁)ᵀ = (0, 0, 0)ᵀ.
+Equality of the entries gives c₁ = 0 and c₂ = 0.
+The third entry repeats the condition c₁ = 0.
+Therefore, the two vectors are linearly independent.
+There are three entry equations but only two coefficients.
+Independence requires that every coefficient be zero.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 28
+
+=== PDF PAGE 29 ===
+Example 3(c)  A Singular Coefficient Matrix
+If
+c₁(1, 2, 4)ᵀ + c₂(2, 1, 3)ᵀ + c₃(4, −1, 1)ᵀ = (0, 0, 0)ᵀ,
+then equating entries gives
+c₁ + 2c₂ + 4c₃ = 0
+2c₁ + c₂ − c₃ = 0
+4c₁ + 3c₂ + c₃ = 0
+The coefficient matrix is singular, so the homogeneous system has nontrivial solutions.
+Therefore, the vectors are linearly dependent.
+We next verify this conclusion by elimination.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 29
+
+=== PDF PAGE 30 ===
+Example 3(c)  Verifying the Nontrivial Solutions
+• Subtract twice the first equation from the second, and four times the first from 
+the third. Divide the new second equation by −3, then add five times it to the 
+new third equation.
+• Thus, c₂ = −3c₃ and c₁ = 2c₃. The coefficient c₃ is free.
+• Choosing c₃ = 1 gives c₁ = 2 and c₂ = −3, so
+• 2(1, 2, 4)ᵀ − 3(2, 1, 3)ᵀ + (4, −1, 1)ᵀ = (0, 0, 0)ᵀ.
+• This is a linear combination with coefficients not all zero.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 30
+1 2 4
+2 1 − 1
+4 3 1
+ቮ
+0
+0
+0
+→
+1 2 4
+0 1 3
+0 0 0
+ቮ
+0
+0
+0
+
+=== PDF PAGE 31 ===
+Theorem 3.3.1  Dependence and Singularity
+Let x₁, x₂, …, xₙ be n vectors in ℝⁿ and let X = (x₁, …, xₙ). The vectors x₁, x₂, …, 
+xₙ will be linearly dependent if and only if X is singular (i.e., det(X) = 0).
+• Here X is the n × n matrix whose columns are the vectors.
+• Example 3(a) has a nonsingular coefficient matrix;
+• Example 3(c) has a singular coefficient matrix.
+• The theorem explains both conclusions through the same test.
+• Its hypothesis is n vectors in ℝⁿ, so X must be square.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 31
+
+=== PDF PAGE 32 ===
+Theorem 3.3.1  Proof
+The equation c₁x₁ + c₂x₂ + ··· + cₙxₙ = 0
+can be rewritten as a matrix equation:
+ c1 x11 + c2 x12 + … + cn x1n = 0
+c1 x21 + c2 x22 + … + cn x2n = 0
+
+c1 xn1 + c2 xn2 + … + cn xnn = 0
+Let c = (c1, c2, …, cn)T, then the system can be written as Xc = 0
+c has a nontrivial solution iff X is singular
+ x1, x2, …, xn will be linearly dependent iff X is singular.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 32
+ 
+0
+0
+0
+             
+2
+1
+2
+22
+12
+2
+1
+21
+11
+1
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+++
+
+
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
+
+
+
+nn
+n
+n
+n
+nn x
+x
+x
+c
+x
+x
+x
+c
+x
+x
+x
+c
+
+=== PDF PAGE 33 ===
+Testing n Vectors in ℝⁿ Using a Determinant
+• Form a matrix X whose columns are the vectors being tested.
+• Calculate det(X) to determine whether X is singular.
+If det(X) = 0, X is singular and the vectors are linearly dependent.
+If det(X) ≠ 0, X is nonsingular and the vectors are linearly independent.
+• Theorem 3.3.1 connects this determinant calculation to the existence of 
+nontrivial solutions of Xc = 0.
+• The determinant test applies to the square matrix formed from n vectors in ℝⁿ.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 33
+
+=== PDF PAGE 34 ===
+Example 4  Four Vectors in ℝ³
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 34
+x₁ = (2, 3, 1)ᵀ, x₂ = (3, 2, 1)ᵀ, x₃ = (5, 5, 2)ᵀ, x₄ = (2, 2, 4)ᵀ.
+• The first three lie in one plane. The displayed relation is x₃ = x₁ + x₂.
+• Since x₃ = x₁ + x₂, the vector x₃ lies in the plane spanned by x₁ and x₂. 
+• It follows that x₁ + x₂ − x₃ + 0x₄ = 0.
+• The coefficients c₁ = 1, c₂ = 1, c₃ = −1, c₄ = 0 are not all zero, 
+so the four vectors are linearly dependent.
+• A dependency relation may have some zero coefficients.
+• We do not need to use x₄ to establish this dependence.
+
+=== PDF PAGE 35 ===
+Example 5  Applying the Determinant Test
+Determine whether (4, 2, 3)ᵀ, (2, 3, 1)ᵀ, and (2, −5, 3)ᵀ are linearly dependent. 
+• Expanding the determinant along the first row gives
+det(X) = 4(9 + 5) − 2(6 + 15) + 2(2 − 9) = 56 − 42 − 14 = 0.
+• By Theorem 3.3.1, the vectors are linearly dependent.
+• An explicit relation is 2v₁ − 3v₂ − v₃ = 0.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 35
+4 2 2
+2 3 − 5
+3 1 3
+= 0
+
+=== PDF PAGE 36 ===
+Testing k Vectors in ℝⁿ
+• To test vectors x₁, x₂, …, xₖ in ℝⁿ, rewrite c₁x₁ + c₂x₂ + ··· + cₖxₖ = 0 as Xc = 0, where 
+X = (x₁, x₂, …, xₖ).
+• If k ≠ n, then X is not square, so determinants cannot be used to decide whether the 
+vectors are independent.
+• The homogeneous system always has the trivial solution c = 0.
+• Its row echelon form has free variables if and only if there are nontrivial solutions; the 
+vectors are then dependent.
+• If there are no free variables, c = 0 is the only solution, and the vectors are linearly 
+independent.
+• Thus, elimination provides a test even when X is rectangular.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 36
+
+=== PDF PAGE 37 ===
+Example 6 Three Vectors in ℝ⁴
+Given the following vectors, determine whether they are linearly independent:
+• There are three vectors, each with four entries.
+• To test independence, solve Xc = 0, with these vectors as the columns of X. 
+There are four equations in the three unknown coefficients c₁, c₂, c₃.
+• Since X is 4 × 3, use elimination rather than a determinant.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 37
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+=
+
+
+
+
+
+
+
+
+
+
+
+
+−=
+7
+7
+0
+1
+   ,
+2
+1
+3
+2
+  ,
+3
+2
+1
+1
+321 xxx
+
+=== PDF PAGE 38 ===
+Example 6  Reducing Xc = 0
+• Add the first equation to the second. Subtract twice the first from the third, and three times the 
+first from the fourth.
+• Then subtract five times the new second equation from the new third, and four times it from 
+the new fourth.
+• The row echelon form involves the free variable c₃.
+• Therefore, the homogeneous system has nontrivial solutions, and x₁, x₂, x₃ are linearly 
+dependent.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 38
+
+
+
+
+
+
+
+
+
+
+
+ −
+
+
+
+
+
+
+
+
+
+
+
+
+ −
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+−
+0000
+0000
+0110
+0121
+0440
+0550
+0110
+0121
+0723
+0712
+0031
+0121
+
+=== PDF PAGE 39 ===
+Example 6  Interpreting the Free Variable
+• The nonzero equations in the row echelon form are c₁ − 2c₂ + c₃ = 0 and c₂ + c₃ = 0.
+• The second equation gives c₂ = −c₃.
+• Substituting in the first gives c₁ = −3c₃.
+• Hence c₃ may be chosen freely, with the other coefficients determined by 
+c₁ = −3c₃ and c₂ = −c₃.
+• For c₃ = 1, we obtain the nontrivial solution c₁ = −3, c₂ = −1, c₃ = 1, 
+giving −3x₁ − x₂ + x₃ = 0.
+• This verifies the dependency conclusion directly.
+• We now ask what independence implies about representation.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 39
+
+=== PDF PAGE 40 ===
+Theorem 3.3.2  Unique Linear Combinations
+Let v₁, …, vₙ be vectors in a vector space V . A vector v in Span(v₁, …, vₙ) can be 
+written uniquely as a linear combination of v₁, …, vₙ if and only if v₁, …, vₙ are 
+linearly independent.
+• Membership in the span guarantees that a representation exists.
+• Independence guarantees that its coefficients are unique.
+• If the vectors are dependent, a linear combination with coefficients not all zero equals zero. 
+Adding it changes the coefficients without changing v.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 40
+
+=== PDF PAGE 41 ===
+Theorem 3.3.2  Setting Up the Proof
+If v ∈ Span(v₁, …, vₙ), then v = α₁v₁ + α₂v₂ + ··· + αₙvₙ. (5)
+Suppose that v can also be expressed as v = β₁v₁ + β₂v₂ + ··· + βₙvₙ. (6)
+We will show that, if v₁, …, vₙ are linearly independent, then βᵢ = αᵢ for i = 1, …, n.
+If v₁, …, vₙ are linearly dependent, it is possible to choose the βᵢ’s different from 
+the αᵢ’s.
+Both equations represent the same vector v; the question is whether their 
+coefficients must agree.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 41
+
+=== PDF PAGE 42 ===
+Theorem 3.3.2  Independence Gives Uniqueness
+Assume that v₁, …, vₙ are linearly independent.
+Subtracting (6) from (5) yields (α₁ − β₁)v₁ + (α₂ − β₂)v₂ + ··· + (αₙ − βₙ)vₙ = 0.   (7)
+By linear independence, all coefficients in (7) must be zero:
+α₁ − β₁ = 0, α₂ − β₂ = 0, …, αₙ − βₙ = 0.
+Hence, α₁ = β₁, α₂ = β₂, …, αₙ = βₙ.
+Thus, representation (5) is unique when v₁, …, vₙ are linearly independent.
+Any two representations have identical coefficients; therefore, no different 
+representation is possible.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 42
+
+=== PDF PAGE 43 ===
+Theorem 3.3.2  Dependence Changes the Coefficients
+If v₁, …, vₙ are linearly dependent, there exist c₁, …, cₙ, not all zero, such that
+0 = c₁v₁ + c₂v₂ + ··· + cₙvₙ. (8)
+Set β₁ = α₁ + c₁, β₂ = α₂ + c₂, …, βₙ = αₙ + cₙ.
+Adding (5) and (8) gives
+v = (α₁ + c₁)v₁ + (α₂ + c₂)v₂ + ··· + (αₙ + cₙ)vₙ
+= β₁v₁ + β₂v₂ + ··· + βₙvₙ.
+Adding a combination equal to zero leaves v unchanged, while the coefficients 
+may change.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 43
+
+=== PDF PAGE 44 ===
+Theorem 3.3.2  Completing the Proof
+Since the cᵢ’s are not all zero, βᵢ ≠ αᵢ for at least one i.
+We have obtained two different coefficient lists that represent the same vector v.
+Thus, if v₁, …, vₙ are linearly dependent, the representation of v as a linear 
+combination of v₁, …, vₙ is not unique.
+Together with the independent case, this proves the theorem.
+The theorem applies in any vector space V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 44
+
+=== PDF PAGE 45 ===
+How Do We Test Independence of Polynomials and 
+Functions?
+
+
+=== PDF PAGE 46 ===
+Linear Independence in Pₙ
+• Pₙ is the vector space of all polynomials of degree less than n.
+• To test whether p₁, p₂, …, pₖ are linearly independent in Pₙ, set
+c₁p₁ + c₂p₂ + ⋯ + cₖpₖ = z.  (9)
+• Here z represents the zero polynomial: 
+z(x) = 0xⁿ⁻¹ + 0xⁿ⁻² + ⋯ + 0x + 0.
+• Rewrite the polynomial on the left-hand side as
+a₁xⁿ⁻¹ + a₂xⁿ⁻² + ⋯ + aₙ₋₁x + aₙ.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 46
+
+=== PDF PAGE 47 ===
+Equating Polynomial Coefficients
+• Two polynomials are equal if and only if their coefficients are equal.
+• Thus, equality with the zero polynomial requires a₁ = a₂ = ⋯ = aₙ = 0.
+• Each aᵢ is a linear combination of c₁, c₂, …, cₖ.
+• These conditions give a homogeneous linear system with unknowns c₁, c₂, …, cₖ.
+• If the system has only the trivial solution, the polynomials are linearly 
+independent; otherwise, they are linearly dependent.
+• This is the same test used for vectors in ℝⁿ.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 47
+
+=== PDF PAGE 48 ===
+Example 7 Polynomial Independence
+To test whether the following vectors are linearly independent, let
+p₁(x) = x² − 2x + 3,     p₂(x) = 2x² + x + 8, p₃(x) = x² + 8x + 7.
+• Set c₁p₁(x) + c₂p₂(x) + c₃p₃(x) = 0x² + 0x + 0.
+• Expanding and grouping terms by powers of x gives
+(c₁ + 2c₂ + c₃)x² + (−2c₁ + c₂ + 8c₃)x + (3c₁ + 8c₂ + 7c₃) = 0x² + 0x + 0.
+• The coefficients of x² , x, and the constant term must each be zero.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 48
+
+=== PDF PAGE 49 ===
+Example 7 The Homogeneous System
+• Equating coefficients leads to the system
+c₁ + 2c₂ + c₃ = 0
+−2c₁ + c₂ + 8c₃ = 0
+3c₁ + 8c₂ + 7c₃ = 0.
+Expanding the first row gives 1(7 − 64) − 2(−14 − 24) + (−16 − 3)=0.
+The coefficient matrix is singular, so there are nontrivial solutions.
+Therefore p₁, p₂, and p₃ are linearly dependent.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 49
+ 
+0
+0
+0
+   
+783
+812
+121
+3
+2
+1
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+c
+c
+c
+
+=== PDF PAGE 50 ===
+Example 7 A Nontrivial Solution
+• The first equation gives c₁ = −2c₂ − c₃.
+• Substitution into the other two equations gives 5c₂ + 10c₃ = 0     and     2c₂ + 4c₃ = 0.
+• Hence c₂ = −2c₃ and c₁ = 3c₃.
+• Choosing c₃ = 1 gives c₁ = 3 and c₂ = −2.
+• These coefficients are not all zero, and 
+3p₁(x) − 2p₂(x) + p₃(x)
+= (3 − 4 + 1)x² + (−6 − 2 + 8)x + (9 − 16 + 7)
+= 0x²  + 0x + 0.
+• This explicitly verifies the dependence concluded from the determinant.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 50
+
+=== PDF PAGE 51 ===
+Linear Dependence in C⁽ⁿ⁻¹⁾[a, b]
+• Determinants can also help decide whether n functions are linearly independent in 
+C⁽ⁿ⁻¹⁾[a, b].
+• Let f₁, f₂, …, fₙ be elements of C⁽ⁿ⁻¹⁾[a, b].
+• If they are linearly dependent, there exist scalars c₁, c₂, …, cₙ, not all zero, such that
+c₁f₁(x) + c₂f₂(x) + ⋯ + cₙfₙ(x) = 0   (10) for each x in [a, b]. The cᵢ are constants, 
+independent of x.
+• Taking the derivative of both sides with respect to x yields
+c₁f₁′(x) + c₂f₂′(x) + ⋯ + cₙfₙ′(x) = 0.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 51
+
+=== PDF PAGE 52 ===
+The System Obtained by Differentiation
+• Continue taking derivatives of both sides of (10).
+• Because the functions are in C⁽ⁿ⁻¹⁾[a, b], these derivatives exist.
+• We obtain the homogeneous system
+• The same constants c₁, c₂, …, cₙ, not all zero, satisfy every equation for every x 
+in [a, b].
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 52
+0)()()(
+0)()()(
+0)()()(
+)1()1(
+22
+)1(
+11
+2211
+2211
+=+++
+=+++
+=+++
+−−− xfcxfcxfc
+xfcxfcxfc
+xfcxfcxfc
+n
+nn
+nn
+nn
+nn
+
+
+
+
+
+=== PDF PAGE 53 ===
+The Matrix Equation for Each Fixed x
+• For each fixed x in [a, b], equation (11) is
+• It has the same nontrivial solution (c₁, c₂, …, cₙ)ᵀ: α₁ = c₁, α₂ = c₂, …, αₙ = cₙ.
+• Thus, if the functions are linearly dependent, the coefficient matrix is singular 
+for each fixed x in [a, b].
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 53
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−−− 0
+0
+0
+)()()(
+)()()(
+)()()(
+2
+1
+)1()1(
+2
+)1(
+1
+21
+21
+
+
+
+
+
+n
+n
+n
+nn
+n
+n
+xfxfxf
+xfxfxf
+xfxfxf
+
+
+
+
+=== PDF PAGE 54 ===
+Dependence Forces a Zero Determinant
+• A singular matrix has determinant zero.
+• Therefore, if f₁, f₂, …, fₙ are linearly dependent,
+for every x in [a, b].
+• The determinant depends on x, so it defines a function of x.
+• The text gives this determinant function a name in the next definition.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 54
+)()()(
+)()()(
+)()()(
+)]( , , ,[
+)1()1(
+2
+)1(
+1
+21
+21
+21
+xfxfxf
+xfxfxf
+xfxfxf
+xfffW
+n
+n
+nn
+n
+n
+n
+−−−
+
+=
+
+
+
+
+
+= 0
+
+=== PDF PAGE 55 ===
+Definition of the Wronskian
+Let f1, f2, …, fn be functions in C(n–1)[a, b], and define the function W[f1, f2, …, 
+fn](x) in [a, b] by
+The function W[f1, f2, …, fn](x) is called the Wronskian of f1, f2, …, fn.
+Each column comes from one function; successive rows contain its successive 
+derivatives.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 55
+)()()(
+)()()(
+)()()(
+)]( , , ,[
+)1()1(
+2
+)1(
+1
+21
+21
+21
+xfxfxf
+xfxfxf
+xfxfxf
+xfffW
+n
+n
+nn
+n
+n
+n
+−−−
+
+=
+
+
+
+
+
+
+=== PDF PAGE 56 ===
+Theorem 3.3.3 A Wronskian Test
+Let f1, f2, …, fn be elements of C(n–1)[a, b]. If there exists a points x0 in [a, b] such 
+that W[f1, f2, …, fn](x0)  0, then f1, f2, …, fn are linearly independent.
+Proof
+If f1, f2, …, fn were linearly dependent, then by the preceding discussion, the 
+coefficient matrix in (11) would be singular for each x in [a, b] and hence W[f1, 
+f2, …, fn](x) would be identically zero on [a, b].
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 56
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−−− 0
+0
+0
+)()()(
+)()()(
+)()()(
+2
+1
+)1()1(
+2
+)1(
+1
+21
+21
+
+
+
+
+
+n
+n
+n
+nn
+n
+n
+xfxfxf
+xfxfxf
+xfxfxf
+
+
+
+
+=== PDF PAGE 57 ===
+Example 8 Exponential Functions
+Show that eˣ and e⁻ˣ are linearly independent in C(−∞, ∞).
+Indeed, eˣ(−e⁻ˣ) − e⁻ˣeˣ = −1 − 1 = −2.
+The Wronskian is not identically zero; it is nonzero at every x.
+Theorem 3.3.3 gives linear independence on every finite interval.
+Any relation valid on all real x would also hold on such an interval;
+hence the functions are linearly independent in C(−∞, ∞).
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 57
+  2 , −=
+−
+=
+−
+−
+xx
+xx
+xx
+ee
+eeeeW
+
+=== PDF PAGE 58 ===
+Example 9 The Required Derivatives
+Consider the functions x²  and x|x| in C[−1, 1].
+Both belong to C¹[−1, 1], so we can compute their Wronskian.
+The derivative of x²  is 2x, a continuous function.
+For x > 0, x|x| = x² , so its derivative is 2x = 2|x|.
+For x < 0, x|x| = −x², so its derivative is −2x = 2|x|.
+At x = 0, the derivative is limx → 0
+x|x| − 0
+x − 0 = limx → 0 |x| = 0.
+Thus, the derivative of x|x| is 2|x| throughout [−1, 1].
+This derivative is continuous, including at x = 0.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 58
+
+=== PDF PAGE 59 ===
+Example 9 An Identically Zero Wronskian
+Using the derivatives just established, we obtain
+Indeed, x²(2|x|) − (x|x|)(2x) = 0 for every x in [−1, 1].
+The symbol ≡ 0 means identically zero on the interval.
+Since the Wronskian is identically zero, it gives no information as to whether the 
+functions are linearly independent.
+We must return to the definition of linear independence.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 59
+022] ,[
+2
+2 = xx
+xxxxxxW
+
+=== PDF PAGE 60 ===
+Example 9 Testing the Functions Directly
+Suppose c₁x² + c₂x|x| = 0 for all x in [−1, 1].
+In particular, evaluating at x = 1 and x = −1 gives
+c₁ + c₂ = 0
+c₁ − c₂ = 0.
+Adding the equations gives 2c₁ = 0, so c₁ = 0.
+Substitution then gives c₂ = 0.
+Thus, x²  and x|x| are linearly independent in C[−1, 1], even though W[x², x|x|] ≡ 0.
+This example shows that the converse of Theorem 3.3.3 is not valid.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 60
+
+=== PDF PAGE 61 ===
+Example 10 Polynomial Functions
+Show that the vectors 1, x, x2, and x3 are linearly independent in C((–, )).
+The matrix is upper triangular, so its determinant is
+1 ·  1 ·  2 ·  6 = 12. The Wronskian is not identically zero.
+Thus, the vectors are linearly independent in C(−∞, ∞).
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 61
+12
+6000
+6200
+3210
+1
+] , , ,1[
+2
+32
+32 ==
+x
+xx
+xxx
+xxxW
+
+=== PDF PAGE 62 ===
+How Do Bases and Dimension 
+Describe a Vector Space?
+
+
+=== PDF PAGE 63 ===
+Basis and Dimension
+Definition
+The vectors v1, v2, …, vn form a basis for a vector space V if and only if
+(1) v1, v2, …, vn are linearly independent (minimal spanning set)
+(2) v1, v2, …, vn span V (spanning set)
+Both conditions are required: independence makes the spanning set minimal, and 
+spanning reaches every vector in V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 63
+
+=== PDF PAGE 64 ===
+Example 1 Bases for ℝ³
+• The standard basis for R3 is {e1, e2, e3}; however, there are many bases that we 
+could choose for R3. 
+• For example,
+are both bases for R3. We will see shortly that any basis for ℝ3 must have exactly 
+three elements.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 64
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+0
+1
+ ,
+0
+1
+1
+ ,
+1
+1
+1
+  and  
+1
+0
+2
+ ,
+1
+1
+0
+ ,
+1
+1
+1
+
+=== PDF PAGE 65 ===
+Example 1 Verifying Both Bases
+• Use the given vectors as the columns of a square matrix.
+• For the first set and the second set, respectively,
+1 0 2
+1 1 0
+1 1 1
+= 1,
+1 1 1
+1 1 0
+1 0 1
+= − 1.
+• Both determinants are nonzero. The corresponding homogeneous systems therefore 
+have only the trivial solution, so each set of columns is linearly independent.
+• Each matrix is also nonsingular. Every vector in ℝ³ can therefore, be expressed as a 
+linear combination of its columns.
+• Each set spans ℝ³ and satisfies both conditions for a basis.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 65
+
+=== PDF PAGE 66 ===
+Example 2 A Basis for ℝ2×2
+In ℝ2×2, consider the set {E₁₁, E₁₂, E₂₁, E₂₂}, where
+Each matrix has one entry equal to 1 and all other entriesequal to 0. 
+Multiplying it by a scalar specifies that entry.
+We verify independence and spanning using matrix entries.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 66
+,00
+01
+11 
+
+
+=E
+
+
+
+= 00
+10
+12E
+,01
+00
+21 
+
+
+=E
+
+
+
+= 10
+00
+22E
+
+=== PDF PAGE 67 ===
+Example 2 Independence and Spanning
+• If c₁E₁₁ + c₂E₁₂ + c₃E₂₁ + c₄E₂₂ = O, then
+• Equality of corresponding entries gives c₁ = c₂ = c₃ = c₄ = 0.
+• Therefore, E₁₁, E₁₂, E₂₁, and E₂₂ are linearly independent.
+• If A =            is in R2  2, then
+A = aE11 + bE12 + cE21 + dE22
+• Thus, E11, E12, E21, E22 span ℝ2  2, and hence form a basis for ℝ2  2.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 67
+.00
+00then 
+43
+21
+
+
+
+=
+
+
+
+cc
+cc
+
+
+
+
+dc
+ba
+
+=== PDF PAGE 68 ===
+A Basis for a Null Space
+• A basis can also describe a particular subspace. 
+To find all solutions of the homogeneous system
+x₁ + x₂ + x₃       = 0
+2x₁ + x₂       + x₄ = 0
+• As in Example 9 of Section 3.2, the equations give
+x₂ = −2x₃ + x₄ and x₁ = x₃ − x₄.
+• The variables x₃ and x₄ are free; x₁ and x₂ depend on them.
+• Set x₃ = α and x₄ = β.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 68
+
+=== PDF PAGE 69 ===
+The Solution in Example 9 and Its Span
+• The solution in Example 9 of Section 3.2 is
+𝑥 =
+𝛼 −  𝛽 
+− 2𝛼 + 𝛽 
+𝛼 
+𝛽 
+= 𝛼
+1
+− 2
+1
+0
++ 𝛽
+− 1
+1
+0
+1
+.
+• The coefficients α and β are arbitrary real numbers.
+• Therefore, these two vectors span N(A), as stated in Example 9 of Section 3.2.
+• We next verify their linear independence.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 69
+
+=== PDF PAGE 70 ===
+The Null Space Spanning Set Is a Basis
+• To test the two spanning vectors for independence, set
+𝑐1
+1
+− 2
+1
+0
++ 𝑐2
+− 1
+1
+0
+1
+= 0.
+• The third entry of this equation gives c₁ = 0.
+• The fourth entry gives c₂ = 0.
+• Thus, the two vectors are linearly independent.
+• They span N(A) and form a basis for N(A).
+• A basis describes every solution of the homogeneous system.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 70
+
+=== PDF PAGE 71 ===
+Theorem 3.4.1
+If {v₁, v₂, …, vₙ} is a spanning set for a vector space V , then any collection of m vectors 
+in V , where m > n, is linearly dependent.
+Proof
+Let u1, u2, …, um be m vectors in V, when m > n. Then, since v1, v2, …, vn span V, 
+we have
+Each uᵢ has a representation using the same n spanning vectors.
+We will choose coefficients c₁, …, cₘ, not all zero, so that
+c₁u₁ + c₂u₂ + ⋯ + cₘuₘ = 0.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 71
+miaaa niniii  ..., ,2 ,1for      2211 =++= vvvu 
+
+=== PDF PAGE 72 ===
+Proof of Theorem 3.4.1 Regrouping Terms
+Substitute the representation of each uᵢ into the combination:
+c₁u₁ + c₂u₂ + ⋯ + cₘuₘ = 𝑐1 σ𝑗 = 1
+𝑛 𝑎1𝑗𝐯𝑗 + 𝑐2 σ𝑗 = 1
+𝑛 𝑎2𝑗𝐯𝑗 + ⋯ + 𝑐𝑚 σ𝑗 = 1
+𝑛 𝑎𝑚𝑗𝐯𝑗
+Rearranging terms, we obtain
+෍
+𝑖 = 1
+𝑚
+𝑐𝑖 ෍
+𝑗 = 1
+𝑛
+𝑎𝑖𝑗𝐯𝑗 = ෍
+𝑗 = 1
+𝑛
+෍
+𝑖 = 1
+𝑚
+𝑎𝑖𝑗𝑐𝑖 𝐯𝑗
+The inner sum on the right is the coefficient of vⱼ. 
+Set each coefficient equal to zero to obtain n equations in c₁, …, cₘ.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 72
+
+=== PDF PAGE 73 ===
+Proof of Theorem 3.4.1 A Nontrivial Solution
+Now consider the system of equations σ𝑖 = 1
+𝑚 𝑎𝑖𝑗𝑐𝑖 = 0, 𝑗 = 1, 2, … , 𝑛.
+There are m unknowns and n equations. Because m > n, Theorem 1.2.1 gives a nontrivial 
+solution (ĉ₁, ĉ₂, …, ĉₘ)ᵀ.
+For this solution, every coefficient of vⱼ is zero, so
+𝑐 1𝐮1 + 𝑐 2𝐮2 + ⋯ + 𝑐 𝑚𝐮𝑚 = ෍
+𝑗 = 1
+𝑛
+0𝐯𝑗 = 𝟎.
+At least one ĉᵢ is nonzero; hence, u₁, u₂, …, uₘ are dependent.
+The spanning set need not itself be independent: n spanning vectors already limit an 
+independent set to at most n vectors.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 73
+
+=== PDF PAGE 74 ===
+Corollary 3.4.2
+If {v1, v2, …, vn} and {u1, u2, …, um} are both bases for a vector space V, 
+then n = m. 
+Proof
+Let both {v1, v2, …, vn} and {u1, u2, …, um} be abses for V. Since v1, v2, …, 
+vn span V and u1, u2, …, um are linearly independent, it follows from 
+Theorem 3.4.1 that m  n. By same reasoning, u1, u2, …, um span V and v1, 
+v2, …, vn are linearly independent, so n  m.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 74
+
+=== PDF PAGE 75 ===
+Dimension
+Definition
+Let V be vector space. If V has a basis consisting of n vectors, we say that V has 
+dimension n. The subspace {0} of V is said to have dimension 0. V is said to be finite-
+dimensional if there is a finite set of vectors that spans V; otherwise we say that V is 
+infinite-dimensional.
+- The notation dim V gives the number of vectors in any basis.
+- The two bases in Example 1 each contain three vectors, so dim ℝ³  = 3. Example 2 gives dim 
+ℝ2×2 = 4.
+- The basis for N(A) above has two vectors, so dim N(A) = 2.
+- Dimension counts basis elements, including when the elements are matrices rather than 
+column vectors.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 75
+
+=== PDF PAGE 76 ===
+Dimension in ℝ³
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 76
+(a) Span(x) = {αx | α is a scalar} is a line if x ≠ 0.
+(b) Span(x, y) = {αx + βy | α and β are scalars} is a plane if x and y are linearly 
+independent.
+(c) Span(x, y, z) = ℝ³
+
+=== PDF PAGE 77 ===
+Example 3 An Infinite Dimensional Space
+• Let P be the vector space of all polynomial. We claim that P is infinite 
+dimensional. If P were finite dimensional, say, if dimension n, any set of n+1 
+vectors would be linearly dependent. 
+• However, 1, x, x2, …, xn are linearly independent, since W[1, x, x2, …, xn] > 0. 
+Therefore, P cannot be of dimension n. Since m was arbitrary, P must be infinite 
+dimension. The same argument shows that C[a, b] is infinite dimensional.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 77
+
+=== PDF PAGE 78 ===
+Theorem 3.4.3
+If V is a vector space of dimension n > 0, then
+(I) any set of n linearly independent vectors spans V .
+(II) any n vectors that span V are linearly independent.
+- A basis requires both independence and spanning. Once dim V = n is known and a set has 
+exactly n vectors, this theorem shows that verifying either condition is enough.
+- Part (I) supplies spanning from independence; part (II) supplies independence from 
+spanning.
+- We prove each statement using the limit on independent sets established in Theorem 3.4.1.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 78
+
+=== PDF PAGE 79 ===
+Proof of Theorem 3.4.3 Part I
+Suppose v₁, …, vₙ are linearly independent and v is any other vector in V . Since dim V = 
+n, a basis has n vectors
+that span V . Theorem 3.4.1 makes v₁, …, vₙ, v dependent.
+Thus, scalars c₁, …, cₙ, cₙ₊₁, not all zero, satisfy c₁v₁ + c₂v₂ + ⋯ + cₙvₙ + cₙ₊₁v = 0.   (1)
+The scalar cₙ₊₁ cannot be zero. Otherwise, (1) would give a nontrivial dependence among 
+v₁, …, vₙ. Hence, v = α₁v₁ + α₂v₂ + ⋯ + αₙvₙ, where αᵢ = −cᵢ/cₙ₊₁ for i = 1, 2, …, n.
+Since v was arbitrary, v₁, …, vₙ span V .
+Together with their independence, this makes them a basis.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 79
+
+=== PDF PAGE 80 ===
+Proof of Theorem 3.4.3 Part II
+Suppose v₁, …, vₙ span V . If they were linearly dependent, one vector, say vₙ, could be 
+written as a linear combination of the others. Then v₁, …, vₙ₋₁ would still span V .
+If the remaining vectors were dependent, another vector could be eliminated while 
+preserving spanning. Continue until a linearly independent spanning set remains.
+This set would be a basis with k < n elements.
+But Corollary 3.4.2 says every basis has the same number of elements, contradicting dim 
+V = n.
+Therefore, v₁, …, vₙ must be linearly independent.
+The n spanning vectors are consequently a basis for V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 80
+
+=== PDF PAGE 81 ===
+Example 4 Using Dimension to Verify a Basis
+Show that
+1
+2
+3
+,
+− 2
+1
+0
+,
+1
+0
+1
+is a basis for ℝ3
+Since dim ℝ³ = 3, we need only show that these three
+vectors are linearly independent.
+1 − 2 1
+2 1 0
+3 0 1
+= 1 + 4 − 3 = 2 ≠ 0.
+The determinant is nonzero, so the vectors are linearly independent. By Theorem 3.4.3(I), the three 
+vectors also span ℝ³. They therefore form a basis for ℝ³.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 81
+
+=== PDF PAGE 82 ===
+Theorem 3.4.4
+If V is a vector space of dimension n > 0, then
+(i) no set of fewer than n vectors can span V .
+(ii) any subset of fewer than n linearly independent vectors can be extended to 
+form a basis for V .
+(iii) any spanning set containing more than n vectors can be pared down to form a 
+basis for V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 82
+
+=== PDF PAGE 83 ===
+Proof of Theorem 3.4.4 Part i
+A basis for V consists of n linearly independent vectors.
+Suppose a set of k vectors, where k < n, spanned V .
+Theorem 3.4.1 would then make every collection of more than k vectors in V linearly 
+dependent.
+In particular, the n basis vectors would be dependent, because n > k. This contradicts the 
+definition of a basis.
+Therefore, no set of fewer than n vectors can span V .
+This is the same spanning-set argument used in
+Theorem 3.4.3(I). It explains why an independent set with fewer than n vectors still 
+needs additional vectors to span V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 83
+
+=== PDF PAGE 84 ===
+Proof of Theorem 3.4.4 Part ii
+Suppose v₁, …, vₖ are linearly independent and k < n.
+By part (i), Span(v₁, …, vₖ) is a proper subspace of V .
+Choose vₖ₊₁ in V but not in Span(v₁, …, vₖ).
+The vectors v₁, …, vₖ, vₖ₊₁ are linearly independent: if they were dependent, vₖ₊₁ would 
+be a linear combination
+of the independent vectors v₁, …, vₖ, contrary to its choice.
+If k + 1 < n, choose another vector outside their span.
+Continue until {v₁, …, vₖ, vₖ₊₁, …, vₙ} has n linearly independent vectors. 
+Theorem 3.4.3(I) says they span V .
+Thus, the original independent set has been extended to form a basis for V .
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 84
+
+=== PDF PAGE 85 ===
+Proof of Theorem 3.4.4 Part iii
+Suppose v₁, …, vₘ span V and m > n.
+By Theorem 3.4.1, these vectors are linearly dependent.
+One vector, say vₘ, is a linear combination of the others.
+Eliminate vₘ. The remaining m − 1 vectors still span V, because every occurrence of vₘ 
+can be replaced by that linear combination.
+If m − 1 > n, eliminate another dependent vector.
+Continue until a spanning set with n vectors remains.
+By Theorem 3.4.3(II), these n vectors are linearly independent. 
+The remaining set is therefore a basis for V.
+This gives a basis by paring down the original spanning set.
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 85
+
+=== PDF PAGE 86 ===
+Standard Bases
+• The standard basis for ℝⁿ is {e₁, e₂, …, eₙ}.
+• The standard basis for ℝ2×2 is {E₁₁, E₁₂, E₂₁, E₂₂}.
+• The standard basis for Pₙ is {1, x, x², x³, …, xⁿ⁻¹}.
+• Recall that Pₙ consists of polynomials of degree less than n, together with the zero 
+polynomial. Its standard basis has n elements, so dim Pₙ = n. This differs from P, the 
+space of all polynomials, which is infinite dimensional.
+• Standard bases are the most natural ones for representing vectors, matrices, and 
+polynomials. Other bases may be more appropriate for applied problems. 
+CE2005 Linear Algebra: Linear Independence and Bases Chia-Ru Chung (NCU CSIE) 86
+
+=== PDF PAGE 87 ===
+Thank You!

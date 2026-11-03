@@ -1,0 +1,9 @@
+{
+  "pages": 87,
+  "cover": "custom SVG",
+  "desktopPdfWidth": 1070.03125,
+  "wheel": "inner only",
+  "slides": "15 stable next clicks",
+  "mobile": "390/768/1440 widths",
+  "errors": []
+}
