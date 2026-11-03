@@ -1,0 +1,17 @@
+{
+  "units": 2,
+  "totalPages": 239,
+  "slides": [
+    15,
+    20
+  ],
+  "allPageImages": true,
+  "perUnitProgress": true,
+  "screenWidths": [
+    390,
+    768,
+    1440,
+    1882
+  ],
+  "errors": []
+}

@@ -3,6 +3,7 @@
   "course": "linear-algebra",
   "unit": "lecture-5",
   "date": "2026-11-03",
+  "updated": "2026-11-04",
   "pdf_pages": 87,
   "slides": 15,
   "source_ids": [
@@ -12,18 +13,26 @@
   "inputs": {
     "teaching/linear-algebra/lecture-5/pages.txt": "3700a91300c154d63d6d210a09a2193261a9191442ff7b91de6bcf29a4f92228",
     "teaching/linear-algebra/lecture-5/slides.txt": "60158e6e12a7512df1e7e94a0cfafc8c2649aade4175dbf23086620e5e5b808c",
+    "teaching/linear-algebra/lecture-5/config.json": "f6c86380273701c66b341d0a6adb0487d6c1cdb6adbb136c4086e6ddc70cc642",
     "raw/pdfs/CE2005_Lecture_5.pdf": "debd434c6e66405a8a696a59d082eaac42b99bce55bbb9dce4b9dcfa5ab2a303",
-    "wiki/index.md": "534a10fbd62686b26fcc1ddaaaba2f9f34fe34d5a28b53da14850377bb546e13",
-    "wiki/log.md": "a055ff53239feb04f1b6a9044c39994249374f8765971e932e7be6ee9c6badb0",
-    "wiki/overview.md": "47ed4fa4ced5b50598db0ca40a21c7d8c5bef00b295bc358e07459a8b5c1e86b",
+    "wiki/index.md": "5baef0f782bb2ab2716e7afd62bcb59f75765615da2150dd43ede1cb8cffff77",
+    "wiki/log.md": "13cc894a82bc479db9c5d633c0af14ef0b8d5a329acce7809501c935e63c6f54",
+    "wiki/overview.md": "95d124bf5adad02c1604b02afd7cdf0689fe6829fe5a7ce3bbdce553e506f9b3",
+    "wiki/comparisons/從基底到矩陣表示.md": "707bca38ce555277747c5762268b0ae28dee09f345055d8075da9d42d8ec0c7e",
     "wiki/concepts/Wronskian判準.md": "211cbaaf604e42ea030c4b72dc606ecff07564f08e48b018868ad9d8cfcc384a",
-    "wiki/concepts/基底與維度.md": "f3737d35892526935e64df75a1b35b2505f49ddc684d601643610fbafbf2a674",
-    "wiki/concepts/線性代數教學補充.md": "bb0dacac0771d45105d1016fba527d44ce50f50f1cfae6721aa7b82699ca5ed5",
-    "wiki/concepts/線性獨立與相依.md": "99f80e9cfa4ada8f15bb4c70633824258fe0eca6877bcb376c6b3b2868457fa3",
+    "wiki/concepts/基底與維度.md": "1c89dcb61443ed563b04cbebcfbcaa359c8a9681d4807ec18325899adbbf9752",
+    "wiki/concepts/座標與換基底.md": "ac062b90d1b6f91f9c8ac11ebef65e26005cd40e0c7dbd8d2e17cbf051790ceb",
+    "wiki/concepts/矩陣子空間與秩零度.md": "50fab400dd9b028afd874c412a6d4a49ea7c7ef86d2f7f958cb6f8ec5fd7cb13",
+    "wiki/concepts/矩陣表示與相似.md": "0972b69583eee91b463fa8f6bde66d63738b2be07ea8c68a9b05006c682a1059",
+    "wiki/concepts/線性代數教學補充.md": "5159149d0593107b54322c2c1ba31695763e2af51e6a1e808ac142db05191b3b",
+    "wiki/concepts/線性獨立與相依.md": "b5073a55e3fc7d8b9bd5b5171b8ef76c2e31e46fbe578e050a229da3e15810ea",
+    "wiki/concepts/線性轉換的核與值域.md": "35fb6fbe47a89fc878b9d646b44b9437fc03b843bb14d015a989fb64578615a3",
     "wiki/questions/如何選擇獨立性判定方法.md": "7994cc9ea5ddd62312eef40216d4f6e0f9b40523dfc9061074b05d6537f69e5b",
-    "wiki/sources/src-20261103-ce2005-lecture-5.md": "f781e097ced8c889fae1650596d947ff02a2ee4d6b4df5c1131fd0b28385957d",
+    "wiki/sources/src-20261103-ce2005-lecture-5.md": "162d0d2aecd74c8752a51b7418677a5e35cb20e820acd241efe8af2f30c5ac98",
+    "wiki/sources/src-20261103-ce2005-lecture-6.md": "fa31a33e5efb4f6c05ea3ffd4b1c8b15174f997b193293d38ccca9d45aaf4ea5",
     "wiki/sources/web-20261103-mit-lecture9.md": "ab82d5b3a1cdb998d7160ebf90d303e757b7a543699fd941cd795d58faa1ca9a",
-    "wiki/standards/PDF課程教材製作標準.md": "8751a382f3844c4f45260d6f3049490e1d0ac0245031d934c9c2079af58021ba",
-    "wiki/topics/線性代數.md": "ac39bc9b03cdbdd1befea595dfc05cb64a4d6bdbaaa12cbd0462ab5bbb9245b5"
+    "wiki/sources/web-20261104-mit-coordinates-spaces.md": "6f6ca8edbbe20bf605b9d86ff228ec279bc5a07d2f471b51e6a6cecb525a8608",
+    "wiki/standards/PDF課程教材製作標準.md": "98191da817152ecbfa4ac896d7faa22d9494b328ff6412135649046084c4beca",
+    "wiki/topics/線性代數.md": "08cbe06fb303f95618774f3cb03a9ba70ffe47b1a2a51df4d55d1356af72fe2e"
   }
 }

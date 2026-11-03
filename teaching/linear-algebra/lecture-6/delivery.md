@@ -1,0 +1,27 @@
+# Lecture 6 交付與驗收
+
+- 標準版本：1.0；完成日期：2026-11-04。
+- 課程／單元：linear-algebra／lecture-6，座標、秩與線性轉換。
+- 來源：src-20261103-ce2005-lecture-6；[保存原檔](../../../raw/pdfs/CE2005_Lecture_6.pdf)。
+- SHA-256：`e32eafc4afd56d1c5e58565b4443abbdf810346312ef14cd4b62ab54fab542a8`，與使用者提供檔案一致。
+- PDF 總頁數／完成範圍：152 頁／pp. 1–152，無略過頁面。
+- 教材：[逐頁 notes](../../../notes/linear-algebra/lecture-6.md)、[20 張簡報](../../../presentations/linear-algebra/lecture-6/slides.md)、[20 張講稿](../../../presentations/linear-algebra/lecture-6/speaker-notes.md)。
+- 補充形式：[圖解](../../../presentations/linear-algebra/lecture-6/diagrams.md)、網站座標流程、相似交換圖、子空間對照表、旋轉／縮放／反射／平移互動，適合本單元座標與幾何主題。
+- 網站：[根目錄入口](../../../index.html)，線性代數 → Lecture 6 → 各模式；保留 Lecture 5。
+- 外部查證：[MIT 實際閱讀範圍](../../../wiki/sources/web-20261104-mit-coordinates-spaces.md)，先存 Wiki 再用於教材；沒有使用未讀影片。
+- 重建方式見 [README](README.md)；輸入版本與雜湊見 `manifest.json`。
+
+## 實際驗證
+
+- 已視覺閱讀全部 152 頁（26 組頁面拼圖），對照文字與公式；原封面使用自製 SVG 代替，頁碼不移位。
+- 確認每頁翻譯、講解、補充非空，1–152 連續；20 張簡報與講稿編號一致。
+- 精確有理數驗算座標、反矩陣、階梯形、pivot 欄、核基底、矩陣表示及兩組相似矩陣例，確認勘誤方向。這些是代表性例題驗算，不代表所有敘述的形式化證明。
+- 瀏覽器檢查兩講全部 239 頁影像、翻譯、下拉頁碼、單元直接互跳及分開儲存進度；完整筆記與 Markdown 切換、兩講互動圖及來源連結可用。
+- 兩講共 35 張簡報連續切換時按鈕位置穩定，全螢幕可換張；原有 Lecture 5 專注閱讀收合、重新載入偏好與切換模式正常。
+- 390、768、1440、1882 px 寬度，各模式無橫向溢出，沒有 JavaScript 或本機資產載入錯誤。
+- 模擬 GitHub Pages `/sample-repo/` 子路徑，兩講 CSS、腳本、239 張頁面圖、自製封面、下載、原 PDF 與 Wiki 連結皆在專案路徑內並回應成功。
+- Markdown 本地連結健檢通過；索引、總覽、主題、相關既有概念與來源、跨講義比較、AGENTS.md 及標準已更新，日誌只追加。
+
+## 限制
+
+未上傳或部署。外部 MIT 來源為部分閱讀，範圍已明列。中文採忠實意譯與逐頁內容整理，不逐字重複頁尾；原文筆誤保留於 PDF，在教材與 Wiki 中另列更正。公式為 Unicode 文字與逐列矩陣，原版面可直接對照左側影像。

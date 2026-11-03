@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="自製學習封面：座標、秩與線性轉換">
+<defs><pattern id="g" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#ffffff" stroke-opacity=".045"/></pattern><marker id="a" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto"><path d="M0 0L10 4L0 8" fill="none" stroke="#82c6ae" stroke-width="2"/></marker></defs>
+<rect width="1600" height="900" fill="#173849"/><rect width="1600" height="900" fill="url(#g)"/>
+<path d="M920 650L1200 710L1500 480L1220 420Z" fill="#82c6ae" fill-opacity=".13" stroke="#82c6ae" stroke-opacity=".4"/>
+<g stroke="#82c6ae" stroke-width="5" marker-end="url(#a)"><path d="M920 650L1430 510"/><path d="M920 650L1180 705"/><path d="M920 650L1150 230"/></g><circle cx="920" cy="650" r="9" fill="#e8f3e9"/>
+<g font-family="Segoe UI, Microsoft JhengHei, sans-serif"><text x="100" y="150" fill="#9fc8b7" font-size="25" letter-spacing="7">LINEAR ALGEBRA / LECTURE 06</text><rect x="100" y="230" width="70" height="5" fill="#82c6ae"/><text x="95" y="360" fill="#ffffff" font-size="68" font-weight="600">座標、秩</text><text x="95" y="465" fill="#ffffff" font-size="68" font-weight="600">與線性轉換</text><text x="100" y="545" fill="#c6dbd4" font-size="24">Coordinates, Rank, and Linear Transformations</text><text x="100" y="725" fill="#9fc8b7" font-size="25">同一個向量，不同的描述。</text><text x="100" y="825" fill="#9fc8b7" font-size="19" letter-spacing="4">知識課堂 · 中文學習版</text></g>
+</svg>

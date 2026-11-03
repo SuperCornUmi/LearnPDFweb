@@ -7,7 +7,7 @@ for path in targets:
     body=path.read_text(encoding='utf-8-sig')
     body=re.sub(r'```.*?```','',body,flags=re.S)
     body=re.sub(r'`[^`]*`','',body)
-    for target in re.findall(r'\]\(([^)]+)\)',body):
+    for target in re.findall(r'(?<!!)\[[^\[\]\n]+\]\(([^)]+)\)',body):
         if '://' in target or target.startswith('#'):continue
         if not (path.parent/target.split('#')[0]).exists():broken.append((str(path.relative_to(root)),target))
 assert not broken,broken

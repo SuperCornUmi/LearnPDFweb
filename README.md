@@ -8,10 +8,11 @@
 
 ## 教學網站
 
-開啟 [知識課堂](index.html)，依「課程 → 章節」進入。首個單元為線性代數 Lecture 5，含 87 頁逐頁中文翻譯與講解、15 張精簡簡報及講解稿、完整筆記、概念圖與互動示意。網站支援離線閱讀，沒有上傳原始文件。
+開啟 [知識課堂](index.html)，依「課程 → 章節」進入。目前有線性代數 Lecture 5（87 頁／15 張簡報）與 Lecture 6（152 頁／20 張簡報），共 239 頁逐頁中文教材，均含講解稿、完整筆記與互動圖解。網站支援離線閱讀，沒有上傳原始文件。
 
 - [Markdown 逐頁筆記](notes/linear-algebra/lecture-5.md)
 - [簡報逐張內容](presentations/linear-algebra/lecture-5/slides.md) · [簡報講解稿](presentations/linear-algebra/lecture-5/speaker-notes.md)
+- [Lecture 6 逐頁筆記](notes/linear-algebra/lecture-6.md) · [精簡簡報](presentations/linear-algebra/lecture-6/slides.md) · [講解稿](presentations/linear-algebra/lecture-6/speaker-notes.md) · [維護說明](teaching/linear-algebra/lecture-6/README.md)
 - [教材維護說明](teaching/linear-algebra/lecture-5/README.md) · [網站使用說明](website/README.md)
 
 這是一個由 LLM 持續維護的繁體中文 PDF 知識庫，依使用者提供的 Karpathy「LLM Wiki」模式建立。原始文件保持不變，摘要、概念、交叉比較與問答會隨閱讀逐步累積。
@@ -55,6 +56,6 @@ templates/         頁面範本
 work/              可重建的擷取文字、OCR 與頁面影像
 ```
 
-目前已匯入 CE2005 Lecture 5，請從知識索引閱讀。往後在此 Wiki 工作中提供課程 PDF，預設依統一流程完成教材與網站更新；保留所有既有來源及章節。此框架不會在聊天外自行監控資料夾，目前網站也不是通用的自動匯入器；新單元由代理依標準實際擴充。PDF 擷取與 OCR 能力取決於代理環境，處理不完整時保留待辦與實際讀取範圍。
+目前已匯入 CE2005 Lecture 5、6，請從知識索引閱讀。往後在此 Wiki 工作中提供課程 PDF，預設依統一流程完成教材與網站更新；保留所有既有來源及章節。此框架不會在聊天外自行監控資料夾，目前網站也不是通用的自動匯入器；新單元由代理依標準實際擴充。PDF 擷取與 OCR 能力取決於代理環境，處理不完整時保留待辦與實際讀取範圍。
 
 引用使用 PDF 實體頁序（從 1 起算），並可附上不同的內文頁碼。一般編輯器即可閱讀；也可將此資料夾作為 Obsidian 知識庫開啟，不需要額外插件。

@@ -95,12 +95,13 @@ data=dict(pages=pages,slides=slides,notes=notes,references=[
     dict(title='CE2005 Lecture 5｜原始 PDF',url='raw/pdfs/CE2005_Lecture_5.pdf',detail='主要來源 · 87 頁 · 鍾佳儒 · 2026-10-14'),
     dict(title='MIT Lecture 9｜官方逐字稿',url='https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/0fab20a14c050d85ef29563cd6c52d37_MIT18_06S10_L09.pdf',detail='已查證補充 · 僅 pp. 1–3 · 查閱 2026-11-03'),
     dict(title='MIT 18.06SC｜課程摘要入口',url='https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/resources/mit18_06scf11_ses1-9sum/',detail='延伸閱讀候選 · 未完整匯入 · 本版未使用其內容')])
-(SITE/'lesson-data.js').write_text('window.LESSON = '+json.dumps(data,ensure_ascii=False)+';\n',encoding='utf-8')
+data['meta']=json.loads((HERE/'config.json').read_text(encoding='utf-8'))
+(SITE/'lesson-data.js').write_text('window.LESSONS=window.LESSONS||{};window.LESSON=window.LESSONS[\"linear-algebra/lecture-5\"]='+json.dumps(data,ensure_ascii=False)+';\n',encoding='utf-8')
 (HERE/'lesson.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
 for name,body in [('lecture-5-notes.md',notes),('lecture-5-slides.md',deck),('lecture-5-speaker-notes.md',speaker)]:
     (SITE/'downloads'/name).write_text(body,encoding='utf-8')
-manifest=dict(standard_version='1.0',course='linear-algebra',unit='lecture-5',date='2026-11-03',pdf_pages=87,slides=len(slides),source_ids=['src-20261103-ce2005-lecture-5','web-20261103-mit-lecture9'],inputs={})
-for path in [HERE/'pages.txt',HERE/'slides.txt',ROOT/'raw/pdfs/CE2005_Lecture_5.pdf']+list((ROOT/'wiki').rglob('*.md')):
+manifest=dict(standard_version='1.0',course='linear-algebra',unit='lecture-5',date='2026-11-03',updated='2026-11-04',pdf_pages=87,slides=len(slides),source_ids=['src-20261103-ce2005-lecture-5','web-20261103-mit-lecture9'],inputs={})
+for path in [HERE/'pages.txt',HERE/'slides.txt',HERE/'config.json',ROOT/'raw/pdfs/CE2005_Lecture_5.pdf']+list((ROOT/'wiki').rglob('*.md')):
     manifest['inputs'][path.relative_to(ROOT).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
 (HERE/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')
 print(f'Built {len(pages)} page lessons, {len(slides)} slides, Markdown notes and browser data.')

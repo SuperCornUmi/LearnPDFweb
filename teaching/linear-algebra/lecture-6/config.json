@@ -1,0 +1,73 @@
+{
+  "key": "linear-algebra/lecture-6",
+  "course": "linear-algebra",
+  "courseName": "線性代數",
+  "unit": "lecture-6",
+  "label": "Lecture 6",
+  "number": 6,
+  "title": "座標、秩與線性轉換",
+  "english": "Coordinates, Rank, and Linear Transformations",
+  "pdf": "raw/pdfs/CE2005_Lecture_6.pdf",
+  "assetBase": "website/assets/lecture6/",
+  "sourceWiki": "wiki/sources/src-20261103-ce2005-lecture-6.md",
+  "sourceId": "src-20261103-ce2005-lecture-6",
+  "downloads": "website/downloads/lecture-6",
+  "script": "website/lessons/lecture-6.js",
+  "groups": [
+    [
+      "開場與目標",
+      1,
+      3
+    ],
+    [
+      "座標與換基底",
+      4,
+      33
+    ],
+    [
+      "矩陣子空間與秩",
+      34,
+      65
+    ],
+    [
+      "線性轉換與核／值域",
+      66,
+      94
+    ],
+    [
+      "矩陣表示與圖形",
+      95,
+      126
+    ],
+    [
+      "相似矩陣",
+      127,
+      151
+    ],
+    [
+      "結尾",
+      152,
+      152
+    ]
+  ],
+  "diagrams": "coordinates",
+  "expectedPages": 152,
+  "references": [
+    {
+      "title": "CE2005 Lecture 6｜原始 PDF",
+      "url": "raw/pdfs/CE2005_Lecture_6.pdf",
+      "detail": "主要來源 · 152 頁 · 鍾佳儒 · 原頁日期 2026-11-04"
+    },
+    {
+      "title": "MIT｜Column Space and Nullspace",
+      "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/ax-b-and-the-four-subspaces/column-space-and-nullspace/",
+      "detail": "已核對官方 Session Overview，未完整閱讀影片或習題"
+    },
+    {
+      "title": "MIT Lecture 31｜官方逐字稿",
+      "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/46108efb43dcf33e989eb5e101fcf9b5_MIT18_06S10_L31.pdf",
+      "detail": "有限查證 · 僅 PDF pp. 9–11 相關段落 · 2026-11-04"
+    }
+  ],
+  "referenceNote": "Lecture 6：152 頁完整對應。p.110 的常數導數、p.137 的孤立式、p.144 的相似乘法順序均在教材明示勘誤；來源紀錄含其他排字提醒。外部資料只採已查證段落。"
+}

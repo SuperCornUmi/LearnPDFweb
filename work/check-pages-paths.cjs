@@ -10,11 +10,14 @@ try{
  browser=await chromium.launch({headless:true,channel:'chrome'});
  const p=await browser.newPage(),errors=[];p.on('pageerror',e=>errors.push(String(e)));
  const base=`http://127.0.0.1:${server.address().port}/sample-repo/`;
- await p.goto(base+'#/linear-algebra/lecture-5/pages/2');await p.waitForSelector('#reader-stream');
+ for(const n of [5,6]){
+ await p.goto(base+`#/linear-algebra/lecture-${n}/pages/2`);await p.waitForSelector('#reader-stream');
  await p.waitForFunction(()=>document.querySelector('#pdf-page-2 img').complete&&document.querySelector('#pdf-page-2 img').naturalWidth>0);
  const links=await p.locator('link[href],script[src],.source-panel img,.source-panel a,a[download],.header-right a').evaluateAll(es=>es.map(e=>e.href||e.src));
  for(const url of [...new Set(links)]){assert(url.startsWith(base),'resource escaped project prefix: '+url);const response=await p.request.get(url.split('#')[0]);assert(response.ok(),url+' '+response.status())}
- await p.getByRole('link',{name:'來源與文獻',exact:true}).click();const pdf=await p.getByRole('link',{name:/CE2005 Lecture 5｜原始 PDF/}).getAttribute('href');assert((await p.request.get(new URL(pdf,base).href)).ok());
- assert(!errors.length,errors.join('\n'));console.log('PASS: root index under /sample-repo/, CSS/JS, 87 image URLs, downloads, source PDF and Wiki URLs remain under project prefix and return 200.');
+ if(!await p.locator('.mode-tabs').isVisible())await p.locator('#reading-focus-toggle').click();
+ await p.getByRole('link',{name:'來源與文獻',exact:true}).click();const pdf=await p.locator('.ref-card a').first().getAttribute('href');assert((await p.request.get(new URL(pdf,base).href)).ok());
+ }
+ assert(!errors.length,errors.join('\n'));console.log('PASS: both units under /sample-repo/, CSS/JS, 239 page image URLs, downloads, PDFs and Wiki URLs return 200 within project prefix.');
 }finally{if(browser)await browser.close();await new Promise(r=>server.close(r))}
 })().catch(e=>{console.error(e);process.exit(1)});

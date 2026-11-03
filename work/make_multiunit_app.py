@@ -1,0 +1,42 @@
+from pathlib import Path
+p=Path('website/app.js');s=p.read_text(encoding='utf-8')
+s=s.replace("const D=window.LESSON, main=document.getElementById('main');\nconst BASE='#/linear-algebra/lecture-5';", "const main=document.getElementById('main'),units=Object.values(window.LESSONS||{});\nlet D=units[0],M=D?.meta,BASE=M?'#/'+M.key:'';")
+def replace_func(name,next_marker,new):
+    global s
+    a=s.index('function '+name+'(');b=s.index(next_marker,a)
+    s=s[:a]+new+'\n'+s[b:]
+replace_func('crumbs','function home(',r'''function crumbs(unit=false){return `<nav class="breadcrumbs" aria-label="所在位置"><a href="#/">所有課程</a><span>／</span><a href="#/${M.course}">${esc(M.courseName)}</a>${unit?`<span>／</span><span>${esc(M.label)}</span>`:''}</nav>`;}''')
+replace_func('home','function course(',r'''function home(){document.title='知識課堂｜LLM Wiki';const courses=[...new Map(units.map(d=>[d.meta.course,d.meta])).values()],total=units.reduce((a,d)=>a+d.pages.length,0);main.innerHTML=`<div class="container"><section class="hero"><div><div class="eyebrow">A PERSONAL LEARNING SPACE</div><h1>讓每一頁，<br>都成為<em>理解的起點。</em></h1><p>從英文講義到中文講解，把零散的閱讀整理成<br>可以回顧、串連，也能繼續探索的知識。</p><div class="hero-stats"><span><b>${String(courses.length).padStart(2,'0')}</b>門課程</span><span><b>${String(units.length).padStart(2,'0')}</b>個章節</span><span><b>${total}</b>頁完整講解</span></div></div><div class="hero-art">${art}<span class="art-caption">CONNECT THE IDEAS, NOT JUST THE DOTS.</span></div></section><div class="section-heading"><h2>探索你的課程</h2><span class="tiny muted">從一門課，開始累積。</span></div><div class="course-grid">${courses.map(c=>`<a class="course-card" href="#/${c.course}"><div class="card-art">${art}</div><div class="card-body"><span class="eyebrow">MATHEMATICS · CE2005</span><h3>${esc(c.courseName)}</h3><p>從向量的關係，理解空間的結構。</p><div class="card-bottom"><span>${units.filter(d=>d.meta.course===c.course).length} 個章節 · 4 種學習模式</span><span>進入課程 →</span></div></div></a>`).join('')}<aside class="welcome-note"><span class="tag">學習，不只一種方式</span><h3 style="margin-top:17px">先看全貌，再走進細節。</h3><p>用簡報掌握主線，跟著逐頁講解讀懂原文，再用筆記和圖解，把觀念連起來。</p><div class="steps"><span>選擇課程</span><span>→</span><span>選擇章節</span><span>→</span><span>開始理解</span></div></aside></div></div>`;}''')
+replace_func('course','function shell(',r'''function course(id){const list=units.filter(d=>d.meta.course===id);document.title=`${list[0].meta.courseName}｜知識課堂`;main.innerHTML=`<div class="container"><nav class="breadcrumbs"><a href="#/">所有課程</a><span>／</span><span>${esc(list[0].meta.courseName)}</span></nav><div class="chapter-head"><div class="eyebrow">CE2005 / LINEAR ALGEBRA</div><h1 class="course-title">${esc(list[0].meta.courseName)}</h1><p class="muted">用定義建立觀念，用推導理解關係。<br>從這裡選擇章節，找到適合當下的閱讀方式。</p></div><div class="section-heading"><h2>課程章節</h2><span class="tiny muted">已整理 ${list.length} 章</span></div>${list.map(d=>{const m=d.meta,last=Math.max(1,Math.min(d.pages.length,Number(store.get(m.key+'-page',m.number===5?store.get('l5-page',1):1))||1));return `<a class="chapter-row" href="#/${m.key}/pages/${last}"><span class="chapter-no">${String(m.number).padStart(2,'0')}</span><div><span class="eyebrow">${esc(m.label)}</span><h2>${esc(m.title)}</h2><p>${esc(m.english)}</p><div class="chapter-info"><span>${d.pages.length} 頁逐頁講解</span><span>${d.slides.length} 張精簡簡報</span><span>概念圖與互動示意</span></div></div><span class="arrow">→</span></a>`}).join('')}<p class="tiny muted" style="margin-top:24px">原始作者、文件日期與版本請見各章節「來源與文獻」。</p></div>`;}''')
+replace_func('shell','let readerJump',r'''function shell(mode,body){const modes=[['pages','逐頁講解'],['slides','精簡簡報'],['notes','完整筆記'],['diagrams','圖解整理'],['references','來源與文獻']];main.innerHTML=`<div class="reader">${crumbs(true)}<div class="unit-heading"><div><h1>${esc(M.title)}</h1><p>CE2005 · ${esc(M.label)} ／ ${esc(M.english)}</p></div><a class="link-button tiny" href="${M.downloads}-notes.md" download>下載 Markdown 筆記 ↓</a></div><nav class="mode-tabs" aria-label="閱讀模式">${modes.map(([id,t])=>`<a href="${BASE}/${id}/${id==='pages'?state.page:id==='slides'?state.slide:''}" ${id===mode?'class="active" aria-current="page"':''}>${t}</a>`).join('')}</nav>${body}</div>`;document.title=`${M.label} ${modes.find(x=>x[0]===mode)?.[1]||''}｜知識課堂`;}''')
+s=s.replace("const original=n=>'raw/pdfs/CE2005_Lecture_5.pdf#page='+n;","const original=n=>M.pdf+'#page='+n;")
+s=s.replace("function pageImage(n){return n===1?'website/assets/lecture5/cover.svg':`website/assets/lecture5/${String(n).padStart(3,'0')}.webp`;}","function pageImage(n){return M.assetBase+(n===1?'cover.svg':String(n).padStart(3,'0')+'.webp');}")
+s=s.replace("store.get('l5-directory',","store.get(M.key+'-directory',").replace("store.set('l5-directory',","store.set(M.key+'-directory',").replace("store.set('l5-page',","store.set(M.key+'-page',")
+s=s.replace("para(cover?'線性代數 Lecture 5：線性獨立與基底。本頁以自製學習封面呈現；原始講義的作者與日期保留在來源紀錄中。':p.translation)","para(cover?`${M.courseName} ${M.label}：${M.title}。本頁以自製學習封面呈現；原始講義的作者與日期保留在來源紀錄中。`:p.translation)")
+s=s.replace(' / 87',' / ${D.pages.length}').replace('87 頁連續講解閱讀區','${D.pages.length} 頁連續講解閱讀區').replace('共 87 頁','共 ${D.pages.length} 頁')
+s=s.replace('v===87','v===D.pages.length').replace('n<=87','n<=D.pages.length')
+s=s.replace('15 張簡報掌握本講主線','${D.slides.length} 張簡報掌握本講主線').replace('LINEAR ALGEBRA / LECTURE 05','${esc(M.courseName)} / ${esc(M.label)}')
+s=s.replace('website/downloads/lecture-5-slides.md','${M.downloads}-slides.md').replace('website/downloads/lecture-5-speaker-notes.md','${M.downloads}-speaker-notes.md').replace('website/downloads/lecture-5-notes.md','${M.downloads}-notes.md')
+s=s.replace("const groups=[['開場與目標',1,3],['獨立與相依',4,24],['系統與唯一表示',25,44],['多項式與函數',45,61],['基底與維度',62,86],['結束與回顧',87,87]];","const groups=M.groups;")
+s=s.replace('87 頁講解的連續閱讀版','${D.pages.length} 頁講解的連續閱讀版')
+s=s.replace('function diagramsView(){','function independenceDiagramsView(){',1)
+s=s.replace('function referenceCards(){',"function diagramsView(){if(M.diagrams==='coordinates')coordinateDiagramsView();else independenceDiagramsView();}\nfunction referenceCards(){",1)
+replace_func('referencesView','function route(',r'''function referencesView(){shell('references',`<p class="mode-description">正文以保存的 PDF 與 Wiki 為依據；外部補充經核對並先納入 Wiki。原文與教學補充分開標示。</p>${referenceCards()}<div class="ref-card"><h2 style="font-size:19px">本版核對與閱讀提醒</h2><p>${esc(M.referenceNote)}</p><a href="${M.sourceWiki}">本講 Wiki 來源與勘誤 ↗</a></div>`);}''')
+replace_func('route','function updateSlide(',r'''function route(){
+ if(!units.length){main.innerHTML='<p class="error">教材資料未載入，請保留 website/ 與根目錄 index.html 的相對結構。</p>';return;}
+ const parts=location.hash.slice(1).split('/').filter(Boolean),key=parts.slice(0,2).join('/'),next=window.LESSONS[key],previousMode=state.mode,sameUnit=next&&M?.key===key;
+ const mode=next?(parts[2]||'pages'):null;
+ if(sameUnit&&mode==='pages'&&previousMode==='pages'&&document.getElementById('reader-stream')){readerJump(Math.max(1,Math.min(D.pages.length,parseInt(parts[3])||1)));return;}
+ if(sameUnit&&mode==='slides'&&previousMode==='slides'&&document.querySelector('.slide')){updateSlide(Math.max(1,Math.min(D.slides.length,parseInt(parts[3])||1)));return;}
+ document.body.classList.remove('reading-mode','reading-focus');readerJump=null;window.scrollTo({top:0,behavior:'instant'});
+ if(!parts.length){state.mode='home';home();return;}
+ if(!units.some(d=>d.meta.course===parts[0])){location.hash='#/';return;}
+ if(parts.length===1){state.mode='course';course(parts[0]);return;}
+ if(!next){location.hash='#/'+parts[0];return;}
+ if(!sameUnit){state.page=1;state.slide=1;}
+ D=next;M=D.meta;BASE='#/'+M.key;state.mode=mode;
+ if(mode==='pages'){state.page=Math.max(1,Math.min(D.pages.length,parseInt(parts[3])||1));pageView(state.page)}else if(mode==='slides'){state.slide=Math.max(1,Math.min(D.slides.length,parseInt(parts[3])||1));slideView(state.slide)}else if(mode==='notes')notesView();else if(mode==='diagrams')diagramsView();else if(mode==='references')referencesView();else location.hash=BASE+'/pages/1';
+}''')
+p.write_text(s,encoding='utf-8')
+index=Path('index.html');html=index.read_text(encoding='utf-8').replace('<script src="website/app.js" defer></script>','<script src="website/coordinate-diagrams.js" defer></script><script src="website/app.js" defer></script>');index.write_text(html,encoding='utf-8')
+print('App now uses registered unit metadata, per-unit progress and dynamic page/slide counts.')

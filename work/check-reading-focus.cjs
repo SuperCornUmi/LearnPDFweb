@@ -3,7 +3,8 @@ const {pathToFileURL}=require('url'),path=require('path'),assert=require('assert
 (async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'});try{
  const page=await browser.newPage({viewport:{width:1882,height:960}}),errors=[];
  page.on('pageerror',e=>errors.push(String(e)));
- const url=pathToFileURL(path.resolve('index.html')).href+'#/linear-algebra/lecture-5/pages/2';
+ const unit=process.argv[2]||'5';
+ const url=pathToFileURL(path.resolve('index.html')).href+`#/linear-algebra/lecture-${unit}/pages/2`;
  await page.goto(url);await page.waitForFunction(()=>document.getElementById('page-select').value==='2');
  assert(!await page.locator('.site-header').isVisible());assert(!await page.locator('.mode-tabs').isVisible());
  for(const [width,height] of [[1882,960],[1255,640],[1440,900]]){

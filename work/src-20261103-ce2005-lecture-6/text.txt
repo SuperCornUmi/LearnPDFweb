@@ -1,0 +1,2794 @@
+=== PDF PAGE 1 ===
+Coordinates, Rank, and Linear Transformations
+CE2005
+Linear Algebra
+Chia-Ru Chung 鍾佳儒
+Department of Computer Science and Information Engineering
+National Central University
+4 November 2026
+
+=== PDF PAGE 2 ===
+By the end of this lecture, you should be able to:
+• Determine coordinate vectors and construct transition matrices between ordered 
+bases.
+• Find bases for matrix subspaces and use rank and nullity to analyze linear systems.
+• Verify linearity and determine the kernel, image, and range of a transformation.
+• Construct matrix representations with respect to specified bases and apply 
+geometric transformations.
+• Relate matrix representations of the same operator through similarity and a change 
+of basis.
+Intended Learning Outcomes
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 2
+
+=== PDF PAGE 3 ===
+Outline
+How Do Coordinates Change with an Ordered Basis?
+What Makes a Transformation Linear?
+1
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 3
+How Does a Change of Basis Relate Two Matrix Representations?5
+How Do Row and Column Spaces Describe Linear Systems?
+How Do Matrices Represent Linear Transformations?
+2
+3
+4
+
+=== PDF PAGE 4 ===
+How Do Coordinates Change with an Ordered Basis?
+
+
+=== PDF PAGE 5 ===
+Coordinates with Respect to a Basis
+• The standard basis for ℝ² is {e₁, e₂}. Any vector x in ℝ² can be expressed as a 
+linear combination:
+• The scalars x₁ and x₂ are the coordinates of x with respect to the standard basis. 
+For any basis {y, z}, a given vector x has a unique representation:
+• The scalars α and β are the coordinates of x with respect to the basis {y, z}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 5
+221121
+2
+1
+1
+0
+0
+1 eex xxxxx
+x +=
+
+
++
+
+
+=
+
+
+=
+
+=== PDF PAGE 6 ===
+Ordered Bases and Coordinate Vectors
+• Let us order the basis elements so that y is the first basis vector and z is the 
+second, and denote the ordered basis by [y, z].
+• Reversing the order of the basis vectors also reverses the order of the coordinates:
+• Linear independence guarantees uniqueness. The order specifies which 
+coefficient belongs to each basis vector.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 6
+
+
+=== PDF PAGE 7 ===
+Example 1: Coordinates in ℝ²
+• The determinant of the matrix with columns y and z is 2(4) − 1(1) = 7 ≠ 0, so y
+and z form a basis for ℝ².
+• The coordinate vector is (3, 1)ᵀ with respect to [y, z] and (1, 3)ᵀ with respect to 
+[z, y]. The vector x is the same in both representations.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 7
+
+
+=== PDF PAGE 8 ===
+Example 1: Geometric Interpretation
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 8
+• The coordinate vector specifies how to get from the origin to (7, 7) using the 
+basis directions. 
+- In [y, z], first use 3y and then z. 
+- In [z, y], first use z and then 3y.
+
+=== PDF PAGE 9 ===
+Application 1: Population Migration
+• The total population remains fixed. Each year, 6 percent of city residents move to the 
+suburbs and 2 percent of suburban residents move to the city. Initially, 30 percent live 
+in the city and 70 percent in the suburbs.
+• The first coordinate gives the city proportion and the second the suburban proportion.
+• Find the proportions after 10, 30, and 50 years and explain their long-term behavior.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 9
+
+
+=== PDF PAGE 10 ===
+Application 1: A Useful New Basis
+• Choose the textbook basis vectors u₁ = (1, 3)ᵀ and u₂ = (−1, 1)ᵀ. Multiplication 
+by A has a simple effect on each:
+Au₁ = (0.94 + 0.06, 0.06 + 2.94)ᵀ = (1, 3)ᵀ = u₁
+Au₂ = (−0.94 + 0.02, −0.06 + 0.98)ᵀ
+= (−0.92, 0.92)ᵀ = 0.92u₂
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 10
+
+
+=== PDF PAGE 11 ===
+Application 1: Long-Term Population
+• Repeated multiplication leaves the u₁ component unchanged and multiplies the 
+u₂ component by 0.92 each year:
+xₙ = 0.25u₁ − 0.05(0.92)ⁿu₂ = (0.25 + 0.05(0.92)ⁿ, 0.75 − 0.05(0.92)ⁿ)ᵀ
+x₁₀ ≈ (0.27, 0.73)ᵀ,   x₃₀ ≈ (0.25, 0.75)ᵀ,   x₅₀ ≈ (0.25, 0.75)ᵀ
+• The displayed proportions are rounded to the nearest percent. 
+• As n increases, (0.92)ⁿ approaches 0, so xₙ approaches the steady-state vector 
+(0.25, 0.75)ᵀ. Changing the basis makes this behavior clear.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 11
+
+=== PDF PAGE 12 ===
+Transition Matrices
+• Section 3.5 continues with methods for changing coordinates between ordered 
+bases.
+• The transition matrix records how the old basis vectors are expressed in the new 
+basis. Its inverse reverses the coordinate conversion.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 12
+
+=== PDF PAGE 13 ===
+Changing Coordinates: Two Problems
+I. Given a vector x = (x₁, x₂)ᵀ, find its coordinates with respect to u₁ and u₂.
+II. Given a vector c₁u₁ + c₂u₂, find its coordinates with respect to e₁ and e₂.
+• We solve II first by expressing each old basis vector as a linear combination of 
+the new basis vectors. This uses the matrix multiplication learned in Chapter 1.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 13
+
+=== PDF PAGE 14 ===
+The Transition Matrix to the Standard Basis
+• U = (u₁, u₂) is the transition matrix from the ordered basis [u₁, u₂] to the standard 
+basis [e₁, e₂]. Its columns are the old basis vectors expressed in the new basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 14
+
+
+=== PDF PAGE 15 ===
+The Reverse Transition Matrix
+• The columns of U are linearly independent, so U is nonsingular. Multiplying x = 
+Uc by U⁻¹ gives the reverse conversion:
+• U⁻¹ is the transition matrix from [e₁, e₂] to [u₁, u₂]. 
+• The direction matters: U converts c to x, while U⁻¹ converts x to c.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 15
+
+
+=== PDF PAGE 16 ===
+Example 2: Finding the Coordinates
+Let u₁ = (3, 2)ᵀ, u₂ = (1, 1)ᵀ, and x = (7, 4)ᵀ. Find the coordinates of x with respect 
+to u₁ and u₂.
+• The coordinate vector is (3, −2)ᵀ. Substituting the coordinates into the basis 
+expansion verifies the answer.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 16
+
+
+=== PDF PAGE 17 ===
+Example 3: A Different Ordered Basis
+Let b₁ = (1, −1)ᵀ and b₂ = (−2, 3)ᵀ. Find the transition matrix from [e₁, e₂] to [b₁, 
+b₂] and the coordinates of x = (1, 2)ᵀ.
+• B converts coordinates in [b₁, b₂] to standard coordinates. Therefore, B⁻¹ is the 
+requested transition matrix.
+• Thus, x = 7b₁ + 3b₂. To verify, use the original basis vectors:
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 17
+
+
+=== PDF PAGE 18 ===
+Changing Between Two Arbitrary Bases
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 18
+• Suppose c is the coordinate vector of x with respect to [v₁, v₂]. We seek its 
+coordinate vector d with respect to [u₁, u₂].
+• Set V = (v₁, v₂) and U = (u₁, u₂). Then
+• The transition matrix from [v₁, v₂] to [u₁, u₂] is S = U⁻¹V . The input is c and the 
+output is d.
+
+
+=== PDF PAGE 19 ===
+Example 4: A Transition Matrix
+Find the transition matrix from [v₁, v₂] to [u₁, u₂].
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 19
+
+
+=== PDF PAGE 20 ===
+Example 4: Meaning of the Columns
+• The first column gives the coordinates of v₁ in [u₁, u₂]. The second gives the 
+coordinates of v₂ in the same ordered basis.
+• The conversion can be performed in two steps: x = Vc gives standard 
+coordinates, then d = U⁻¹x gives coordinates in [u₁, u₂]. Thus, d = U⁻¹Vc.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 20
+
+
+=== PDF PAGE 21 ===
+Coordinate Vectors in a General Vector Space
+Let V be a vector space and let E = {v₁, v₂, …, vₙ} be an ordered basis for V . If v is any 
+element of V , then v can be written in the form
+where c₁, c₂, …, cₙ are scalars. Thus, we can associate with each vector v a unique vector 
+c = (c₁, c₂, …, cₙ)ᵀ in ℝⁿ. The vector c defined in this way is called the coordinate vector 
+of v with respect to the ordered basis E and is denoted [v]E. The cᵢ’s are called the 
+coordinates of v relative to E. The vector v belongs to V , while its coordinate vector [v]E
+belongs to ℝⁿ. The same definition applies to vectors, matrices, and polynomials.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 21
+
+
+=== PDF PAGE 22 ===
+Example 5: Two Ordered Bases for ℝ³
+Find the transition matrix from E to F, and use it to find the coordinates of x and y
+with respect to F.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 22
+x = 3v₁ + 2v₂ − v₃,     y = v₁ − 3v₂ + 2v₃
+
+=== PDF PAGE 23 ===
+Example 5: Constructing U and V
+• To compute U⁻¹, reduce (U | I). Subtract row 1 from row 2, subtract row 3 from 
+row 2, then subtract rows 2 and 3 from row 1.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 23
+
+
+=== PDF PAGE 24 ===
+Example 5: The Transition Matrix
+• For example, the third column comes from 2(1) − 5 = −3, −1 + 5 − 4 = 0, and 4. 
+• Each column gives the coordinates of the corresponding vector vⱼ in F.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 24
+
+
+=== PDF PAGE 25 ===
+Example 5: Coordinates of x and y
+• Therefore, x = 8u₁ − 5u₂ + 3u₃ and y = −8u₁ + 2u₂ + 3u₃.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 25
+
+
+=== PDF PAGE 26 ===
+Example 5: Verification in Both Bases
+• Both expansions describe the same vector. Only the coordinate vector changes.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 26
+
+
+=== PDF PAGE 27 ===
+Transition Matrices for a General Vector Space
+Let E = {w₁, …, wₙ} and F = {v₁, …, vₙ} be ordered bases for an n-dimensional 
+vector space V . Express each old basis vector in the new basis:
+Column j of S contains the coordinates of wⱼ with respect to F. The row index i
+identifies the coefficient of vᵢ.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 27
+
+
+=== PDF PAGE 28 ===
+Derivation of the Coordinate Conversion
+• Let x = [v]E and y = [v]F. Substitute the basis expansions for wⱼ and collect the 
+coefficients of each vᵢ:
+• Uniqueness of coordinates in the basis F identifies these coefficients with the 
+entries of y.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 28
+
+
+=== PDF PAGE 29 ===
+Why a Transition Matrix Is Nonsingular
+Suppose Sx = 0. The coordinate-conversion identity implies that
+x₁w₁ + ⋯ + xₙwₙ = 0v₁ + ⋯ + 0vₙ = 0
+Since w₁, …, wₙ are linearly independent, x₁ = ⋯ = xₙ = 0. Thus, Sx = 0 has only 
+the trivial solution, so S is nonsingular.
+S converts coordinates from E to F. Its inverse S⁻¹ converts coordinates from F to 
+E.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 29
+
+
+=== PDF PAGE 30 ===
+Example 6: Coordinates for Polynomials
+In P₃, change from the ordered basis [1, x, x²] to [1, 2x, 4x² − 2]. In this textbook, 
+P₃ consists of polynomials of degree at most 2, including the zero polynomial.
+First express the second basis in the standard basis:
+The coefficient columns give the transition matrix from [1, 2x, 4x² − 2] to 
+[1, x, x² ].
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 30
+
+
+=== PDF PAGE 31 ===
+Example 6: The Two Transition Matrices
+• S converts coordinates from [1, 2x, 4x² − 2] to [1, x, x²]. S⁻¹ converts in the 
+requested direction.
+• For an independent check, if the new coordinates are (α, β, γ)ᵀ, expanding the 
+polynomial gives standard coordinates (α − 2γ, 2β, 4γ)ᵀ. Solving these three 
+equations gives the entries of S⁻¹.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 31
+
+
+=== PDF PAGE 32 ===
+Example 6: Coordinates and Verification
+• Given any p(x) = a + bx + cx² in P₃, multiply the standard coordinate vector by 
+S⁻¹:
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 32
+
+
+=== PDF PAGE 33 ===
+Every Nonsingular Matrix Gives a Change of Basis
+• Let S be an n × n nonsingular matrix and let {v₁, …, vₙ} be an ordered basis for 
+V . Define wⱼ = ∑ᵢ sᵢⱼvᵢ, as before. Suppose a linear combination of the wⱼ’s is zero:
+• Independence of the vᵢ’s implies Sx = 0. Since S is nonsingular, x = 0. Therefore, 
+the wⱼ’s are linearly independent. There are n of them in an n-dimensional space, 
+so they form a basis.
+• S is the transition matrix from {w₁, …, wₙ} to {v₁, …, vₙ}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 33
+
+
+=== PDF PAGE 34 ===
+How Do Row and Column Spaces 
+Describe Linear Systems?
+
+
+=== PDF PAGE 35 ===
+Row Vectors and Column Vectors
+• If A is an m × n matrix, each row of A is an n-tuple of real numbers and hence 
+can be considered as a vector in ℝ¹×ⁿ. The m vectors corresponding to the rows 
+of A will be referred to as the row vectors of A.
+• Similarly, each column of A can be considered as a vector in ℝᵐ, and we can 
+associate n column vectors with the matrix A.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 35
+
+
+=== PDF PAGE 36 ===
+Row Space and Column Space
+If A is an m × n matrix, the subspace of ℝ¹×ⁿ spanned by the row vectors of A is 
+called the row space of A. The subspace of ℝᵐ spanned by the column vectors of A 
+is called the column space of A. 
+- The row space contains linear combinations of rows. 
+- The column space contains linear combinations of columns. 
+- Their vectors generally belong to different spaces.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 36
+
+=== PDF PAGE 37 ===
+Example 1: Row Space and Column Space
+• The row space of A is the set of all 3-tuples of the form
+• The column space of A is the set of all vectors of the form
+• Thus, the row space of A is a two-dimensional subspace of ℝ¹×³ , and the column 
+space of A is ℝ².
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 37
+
+
+=== PDF PAGE 38 ===
+Theorem 3.6.1: Row Equivalent Matrices
+Two row equivalent matrices have the same row space.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 38
+Proof:
+If B is row equivalent to A, then B can be formed from A by a finite sequence of
+row operations. Every row of B is therefore a linear combination of the rows of A.
+Consequently, every linear combination of rows of B is also a linear combination of rows 
+of A. The row space of B is a subspace of the row space of A. Every elementary row 
+operation is reversible. Thus, A is row equivalent to B, and every row of A is a linear 
+combination of the rows of B. The row space of A is therefore a subspace of the row space 
+of B. Each row space contains the other, so the two row spaces are equal. This result 
+explains why row reduction can identify a basis for the original row space.
+
+=== PDF PAGE 39 ===
+Rank and a Basis for the Row Space
+Definition: 
+The rank of a matrix A, denoted rank(A), is the dimension of the row space of A.
+• To determine the rank of a matrix, we can reduce the matrix to row echelon form. 
+The nonzero rows of the row echelon matrix will form a basis for the row space.
+• By Theorem 3.6.1, this is also a basis for the row space of A. The rank equals the 
+number of nonzero rows in its row echelon form.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 39
+
+=== PDF PAGE 40 ===
+Why the Nonzero Echelon Rows Form a Basis
+• The nonzero rows span the row space because adding or removing zero rows 
+does not change any linear combination.
+• They are linearly independent. In a zero linear combination of the nonzero rows, 
+the first leading column forces the coefficient of the first row to be zero. The 
+next leading column forces the coefficient of the second row to be zero.
+• Continuing through all leading columns forces every coefficient to be zero. 
+Thus, the nonzero rows form a basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 40
+
+=== PDF PAGE 41 ===
+Example 2: Reduction to Row Echelon Form
+• The nonzero rows (1, −2, 3) and (0, 1, 5) form a basis for the row space of U.
+• Since U and A are row equivalent, they have the same row space. Thus, these 
+same two row vectors form a basis for the row space of A.
+• rank(A) = rank(U) = 2
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 41
+UA =
+
+
+
+
+
+
+
+
+
+ −
+
+
+
+
+
+
+
+
+
+
+
+−−
+−
+−
+=
+000
+510
+321
+741
+152
+321
+
+=== PDF PAGE 42 ===
+Linear Systems and the Column Space
+• Consider the system Ax = b:
+• A solution provides coefficients that express b as a linear combination of the columns 
+of A. Conversely, any such linear combination provides a solution of Ax = b.
+• Ax = b is consistent if and only if b is in the column space of A
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 42
+
+
+=== PDF PAGE 43 ===
+Theorem 3.6.2: Consistency Theorem for Linear 
+Systems
+A linear system Ax = b is consistent if and only if b is in the column space of A.
+Proof: 
+If Ax = b is consistent, a solution gives coefficients x₁, …, xₙ with b = x₁a₁ + 
+⋯ + xₙaₙ. Hence, b is in the column space.
+If b is in the column space, it has such an expression. The vector x = (x₁, …, 
+xₙ)ᵀ then satisfies Ax = b, so the system is consistent.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 43
+
+=== PDF PAGE 44 ===
+Homogeneous Systems and Linear Independence
+• Replacing b by the zero vector gives
+• The system Ax = 0 will have only the trivial solution x = 0 if and only if the 
+column vectors of A are linearly independent.
+• This follows directly from the definition of linear independence: 
+a zero linear combination must have all coefficients equal to zero.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 44
+
+
+=== PDF PAGE 45 ===
+Theorem 3.6.3: Existence and Uniqueness
+Let A be an m × n matrix. The linear system Ax = b is consistent for every b ∈ ℝᵐ 
+if and only if the column vectors of A span ℝᵐ. The system Ax = b has at most one 
+solution for every b∈ ℝᵐ if and only if the column vectors of A are linearly 
+independent.
+• “At most one” allows either no solution or one solution. Existence for every b
+requires the spanning condition in the first statement.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 45
+
+=== PDF PAGE 46 ===
+Theorem 3.6.3: Proof of the Existence Statement
+• By Theorem 3.6.2, Ax = b is consistent exactly when b belongs to the column 
+space of A.
+• Therefore, Ax = b is consistent for every b∈ ℝᵐ exactly when the column space 
+of A is all of ℝᵐ.
+• By the definition of column space, this is exactly the statement that the column 
+vectors of A span ℝᵐ.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 46
+
+=== PDF PAGE 47 ===
+Theorem 3.6.3: Proof of the Uniqueness Statement
+• If Ax = b has at most one solution for every b, then Ax = 0 has only the trivial 
+solution.
+• Hence, the columns of A are linearly independent.
+• Conversely, suppose the columns are linearly independent. Then Ax = 0 has only 
+the trivial solution. If x₁ and x₂ both satisfy Ax = b, then
+• It follows that x₁ − x₂ = 0, so x₁ = x₂. Thus, there is at most one solution.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 47
+
+
+=== PDF PAGE 48 ===
+The Number of Columns and the Dimension
+• Let A be an m × n matrix. Its n column vectors belong to ℝᵐ.
+• If the column vectors span ℝᵐ, then n ≥ m, because no set of fewer than m 
+vectors can span ℝᵐ.
+• If the column vectors are linearly independent, then n ≤ m, because every set of 
+more than m vectors in ℝᵐ is linearly dependent.
+• Thus, if the column vectors of A form a basis for ℝᵐ, then n = m.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 48
+
+=== PDF PAGE 49 ===
+Corollary 3.6.4: Nonsingularity and a Column Basis
+An n × n matrix A is nonsingular if and only if the column vectors of A form a basis for 
+ℝⁿ.
+Proof: 
+If A is nonsingular, Ax = 0 has only the trivial solution. Therefore, its n columns
+are linearly independent and form a basis for ℝⁿ.
+Conversely, if the columns form a basis, they are linearly independent. Thus, Ax = 
+0 has only the trivial solution. Since A is square, A is nonsingular.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 49
+
+=== PDF PAGE 50 ===
+Nullity and the Rank–Nullity Theorem
+• The dimension of the null space of a matrix is called the nullity of the matrix.
+• Theorem 3.6.5: The Rank-Nullity Theorem. 
+If A is an m × n matrix, then the rank of A plus the nullity of A equals n.
+The total is the number of columns of A, which is the number of unknowns in 
+Ax = 0.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 50
+
+
+=== PDF PAGE 51 ===
+Theorem 3.6.5: Lead Variables and Free Variables
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 51
+Proof: 
+Let U be the reduced row echelon form of A. The system Ax = 0 is 
+equivalent to Ux = 0.
+If A has rank r, then U has r nonzero rows. Consequently, Ux = 0 has r lead 
+variables and n − r free variables.
+The dimension of N(A) equals the number of free variables. 
+Therefore,
+
+=== PDF PAGE 52 ===
+Why Free Variables Determine the Null Space 
+Dimension
+• In the reduced system Ux = 0, solve each lead variable in terms of the free 
+variables.
+• Set one free variable equal to 1 and all other free variables equal to 0. Repeat 
+this for each of the n − r free variables to obtain n − r solution vectors.
+• These vectors span N(A), because any choice of free variables gives the 
+corresponding linear combination. They are linearly independent, because their 
+coordinates corresponding to free variables force every coefficient in a zero 
+combination to vanish.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 52
+
+=== PDF PAGE 53 ===
+Example 3: A Row Space Basis and a Null Space 
+Basis
+Find a basis for the row space of A and a basis for N(A). Verify that dim N(A) = n − r.
+• Subtract twice row 1 from row 2, and subtract row 1 from row 3. Multiply row 2 by −1. 
+Then subtract twice row 2 from row 3, and add row 2 to row 1.
+• Thus, {(1, 2, 0, 3), (0, 0, 1, 2)} is a basis for the row space of A, and rank(A) = 2.
+• The lead variables are x₁ and x₃. The free variables are x₂ and x₄.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 53
+
+
+=== PDF PAGE 54 ===
+Example 3: Description of the Null Space
+• Because Ax = 0 and Ux = 0 are equivalent, x is in N(A) exactly when
+• Solve for the lead variables and set x₂ = α and x₄ = β.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 54
+
+
+=== PDF PAGE 55 ===
+Example 3: Basis Verification and Nullity
+• The displayed expression shows that (−2, 1, 0, 0)ᵀ and (−3, 0, −2, 1)ᵀ span N(A).
+• They are linearly independent: coordinate 2 of a zero linear combination gives 
+the first coefficient as zero, and coordinate 4 gives the second coefficient as zero.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 55
+
+
+=== PDF PAGE 56 ===
+The Column Space and Dependency Relations
+• For the matrix U in Example 3, the columns u₁ and u₃ are linearly independent, 
+while
+• The same relations hold for the columns of A. The columns a₁ and a₃ are linearly 
+independent, while
+• In general, row reduction preserves these dependency relations because Ax = 0 if 
+and only if Ux = 0. It need not preserve the column space itself.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 56
+
+
+=== PDF PAGE 57 ===
+Theorem 3.6.6: Equality of the Two Dimensions
+If A is an m × n matrix, the dimension of the row space of A equals the dimension 
+of the column space of A.
+• rank(A) is also the dimension of the column space. The two spaces need not be 
+the same: the row space lies in ℝ¹×ⁿ and the column space lies in ℝᵐ.
+• The proof first identifies independent original columns using leading 1’s in an 
+echelon form. It then applies the same argument to Aᵀ.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 57
+
+=== PDF PAGE 58 ===
+Theorem 3.6.6: Independent Original Columns
+Proof: 
+Suppose rank(A) = r. Its row echelon form U has r leading 1’s. The corresponding r
+columns of U are linearly independent.
+Delete the columns corresponding to free variables from U to obtain UL. Delete the 
+same columns from A to obtain AL. Then AL and UL are row equivalent.
+If ALx = 0, then ULx = 0. Since the columns of UL are linearly independent, x = 0.
+Thus the r columns of AL are linearly independent.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 58
+
+
+=== PDF PAGE 59 ===
+Theorem 3.6.6: The Transpose Argument
+The preceding argument applies to any matrix. Apply it to Aᵀ to obtain
+The previous slide gave the reverse inequality. Therefore the two dimensions are 
+equal.
+This completes the proof.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 59
+
+
+=== PDF PAGE 60 ===
+A Basis for the Column Space
+• Use the row echelon form U of A to identify the columns containing leading 1’s. 
+Take the corresponding columns from the original matrix A.
+• Theorem 3.6.6 shows that these rank(A) independent columns form a basis for 
+the column space of A.
+• The row echelon form U tells us only which columns of A to use. We cannot 
+generally use the column vectors from U, since U and A may have different 
+column spaces.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 60
+
+=== PDF PAGE 61 ===
+Example 4: Selection of Original Columns
+Find a basis for the column space of
+• The row echelon form of A is
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 61
+
+
+=== PDF PAGE 62 ===
+Example 4: The Column Space Basis
+• The leading 1’s occur in columns 1, 2, and 5. Therefore the following columns 
+of the original matrix A form a basis for its column space:
+• The three nonzero rows of U form a basis for the row space of A. With five 
+columns, A has nullity 5 − 3 = 2.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 62
+
+
+=== PDF PAGE 63 ===
+Example 5: Dimension of a Spanned Subspace
+Find the dimension of the subspace of ℝ⁴ spanned by
+• The subspace Span(x₁, x₂, x₃, x₄) is the column space of the matrix
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 63
+
+
+=== PDF PAGE 64 ===
+Example 5: Reduction and Dimension
+• The row echelon form of X is
+• The leading 1’s occur in columns 1 and 2, so x₁ and x₂ form a basis for the 
+column space of X.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 64
+
+
+
+
+
+
+
+
+
+
+
+
+0000
+0000
+2010
+3221
+
+
+=== PDF PAGE 65 ===
+Example 5: Verification of the Spanning Relations
+• The other two vectors are linear combinations of the selected basis vectors:
+• The vectors x₁ and x₂ are linearly independent: coordinate 4 of a zero linear 
+combination forces the coefficient of x₂ to vanish, and coordinate 1 then forces 
+the coefficient of x₁ to vanish. Thus, the dimension is 2.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 65
+
+
+=== PDF PAGE 66 ===
+What Makes a Transformation Linear?
+
+
+=== PDF PAGE 67 ===
+Definition of a Linear Transformation
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 67
+A mapping L from a vector space V into a vector Space W is said to be a linear 
+transformation if
+L(v1 + v2) = L(v1) + L(v2)
+for all v1, v2 V and for all scalars  and . 
+• . When V and W are the same, a linear transformation L: V → V is 
+called a linear operator on V .
+
+=== PDF PAGE 68 ===
+Equivalent Conditions for Linearity
+• The defining condition gives the following two conditions.
+• Conversely, if both conditions hold, then
+• Thus, a mapping is a linear transformation if and only if it satisfies both 
+conditions for all vectors and scalars.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 68
+
+
+=== PDF PAGE 69 ===
+Example 1: Stretching in ℝ²
+• Let L be the operator defined by L(x) = 3x for each x∈ ℝ².
+• Therefore, L is a linear operator. It stretches each vector by a factor of 3, as in 
+Figure 4.1.1.
+• More generally, for a positive scalar α, the linear operator F(x) = αx stretches or 
+shrinks vectors by a factor of α.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 69
+
+
+=== PDF PAGE 70 ===
+Example 2: Projection onto the x₁-Axis
+• Consider the mapping L(x) = x₁e₁ for each x = (x₁, x₂)ᵀ ∈ ℝ². Thus L(x) = (x₁, 0)ᵀ. 
+If y = (y1, y2)T, then
+• Hence, L is a linear operator. It projects a vector onto the x₁-axis by keeping x₁ 
+and setting the second coordinate to zero. See Figure 4.1.2.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 70
+)(    )(0000
+0 α  )(
+1111
+11
+22
+11
+2
+1
+2
+1
+yx
+yx
+βLαLyβxαβyαx
+βyαx
+βyαx
+βyαx
+y
+yβx
+xLβαL
++=
+
+
++
+
+
+=
+
+
++
+
+
+=
+
+
+
+ +=
+
+
+
+
+
+
+
+
+
++
++=
+
+
+
+
+
+
+
+
++
+
+
+=+ L
+
+
+=== PDF PAGE 71 ===
+Example 3: Reflection about the x₁-Axis
+• Let L be the operator defined by L(x) = (x1, –x2)T for each x = (x1, x2)T in ℝ2.
+• For each x = (x1, x2)T and y = (y1, y2)T
+• Therefore, L is a linear operator. It reflects each vector about the x₁-axis. The first 
+coordinate stays the same and the second coordinate changes sign. See Figure 4.1.3.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 71
+)(    )(
+)(  α  )(
+2
+1
+2
+1
+2
+1
+2
+1
+22
+11
+22
+11
+2
+1
+2
+1
+yx
+yx
+βLαLy
+yβx
+xαβy
+βy
+αx
+αx
+βyαx
+βyαx
+βyαx
+βyαx
+y
+yβx
+xLβαL
++=
+
+
+
+−+
+
+
+
+−=
+
+
+
+−+
+
+
+
+−=
+
+
+
+
++−
++=
+
+
+
+
+
+
+
+
+
++
++=
+
+
+
+
+
+
+
+
++
+
+
+=+ L
+
+
+=== PDF PAGE 72 ===
+Example 4: Counterclockwise Rotation by 90°
+• Let L be the operator defined by L(x) = (–x2, x1)T for each x = (x1, x2)T in ℝ2.
+• For each x = (x1, x2)T and y = (y1, y2)T
+• The operator rotates each vector in R²  by 90° in the counterclockwise direction. 
+See Figure 4.1.4.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 72
+1 1 1 1 2 2
+2 2 2 2 1 1
+2 2 2 2
+1 1 1 1
+()( )    
+( )    ( )
+xy αx βy αx βyLα β L β Lxy αx βy αx βy
+αx βy x y α β αL βLαx βy x y
+    + − +       + = + = =           ++          
+− − − −       = + = + = +              
+xy
+xy
+
+
+=== PDF PAGE 73 ===
+Example 5: A Transformation from ℝ² to ℝ¹
+• The mapping L: ℝ² → ℝ¹ defined by L(x) = x₁ + x₂ is a linear transformation.
+• The input has two coordinates and the output is a real number. The domain and 
+codomain of a linear transformation can be different vector spaces.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 73
+
+
+=== PDF PAGE 74 ===
+Example 6: A Mapping That Is Not Linear
+• Consider M: ℝ² → ℝ¹ defined by
+• If α < 0 and x ≠ 0, then |α|M(x) differs from αM(x). Thus M(αx) = αM(x) fails, 
+and M is not a linear transformation.
+• Linearity must hold for every scalar, including negative scalars.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 74
+1/211 22
+12
+22
+2 2 1/2
+12
+( )   ( ) ( )
+ | |  ( ) | | ( )
+xxM x M M x x xx
+x x M x
+    
+
+       = = = +             
+= + =
+2 2 1/2
+12( )    ( )M x x x =+
+
+=== PDF PAGE 75 ===
+Example 7: A Transformation from ℝ² to ℝ³
+• Let L: ℝ² → ℝ³ be defined by L(x) = (x₂, x₁, x₁ + x₂)ᵀ.
+• Both conditions hold. Therefore, L is a linear transformation.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 75
+22
+11
+11
+22
+1 2 1 2
+( )  ( )
+xxxxL x L L x x L x xx x x x x
+      
+             = = = = =                    ++   
+1 1 1 1
+2 2 2 2
+2 2 2 2
+1 1 1 1
+1 1 2 2 1 2 1 2
+( )  
+( ) ( )
+x y x yL L L x y x y
+x y x y
+x y x y L L
+x y x y x x y y
+    +     + = + =         +        
++     
+     = + = + = +     
++ + + + +          
+xy
+xy
+
+=== PDF PAGE 76 ===
+Example 7: The Matrix Form
+• The transformation in Example 7 can also be written using a matrix.
+• The matrix has two columns because the input belongs to ℝ² and three rows 
+because the output belongs to ℝ³.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 76
+
+
+=== PDF PAGE 77 ===
+Matrices Define Linear Transformations
+• If A is any m × n matrix, define the transformation from ℝⁿ to ℝᵐ by
+• Thus, each m × n matrix defines a linear transformation from ℝⁿ to ℝᵐ. This 
+extends the matrix multiplication studied in Chapter 1.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 77
+
+
+=== PDF PAGE 78 ===
+Zero Vectors and Additive Inverses
+• Let L: V → W be a linear transformation. The symbols 0V and 0w denote the zero 
+vectors in V and W, respectively.
+• For each v ∈ V , linearity also gives
+• Therefore, L(−v) is the additive inverse of L(v), so
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 78
+
+
+=== PDF PAGE 79 ===
+Linear Combinations under a Transformation
+• For vectors v₁, …, vₙ ∈ V and scalars α₁, …, αₙ, a linear transformation satisfies
+• For n = 1 this is the scalar multiplication condition. Suppose the formula holds for n = 
+k. Then
+• Mathematical induction proves the statement for every positive integer n.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 79
+
+
+=== PDF PAGE 80 ===
+Example 8: The Identity Operator
+• If V is any vector space, the identity operator I is defined by
+I(v) = v for all v∈ V
+I(αv₁ + βv₂) = αv₁ + βv₂
+= αI(v₁) + βI(v₂)
+• Therefore, I is a linear transformation that maps V into itself. 
+Each vector remains unchanged.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 80
+
+=== PDF PAGE 81 ===
+Example 9: Integration as a Linear Transformation
+• Let L be the mapping from C[a, b] to ℝ¹ defined by
+• Here C[a, b] is the vector space of continuous real-valued functions on [a, b]. 
+For f, g∈ C[a, b],
+• Thus, L is a linear transformation. Its input is a function and its output is a real number.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 81
+
+
+=== PDF PAGE 82 ===
+Example 10: Differentiation as a Linear 
+Transformation
+• Let D map C¹ [a, b] into C[a, b], with 
+• C¹ [a, b] consists of functions with a continuous first derivative on [a, b]. 
+Thus, the derivative belongs to C[a, b].
+• C¹ [a, b] consists of functions with a continuous first derivative on [a, b]. Thus 
+the derivative belongs to C[a, b].
+• Differentiation is a linear transformation between these function spaces.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 82
+
+
+=== PDF PAGE 83 ===
+Definition of the Kernel
+Let L: V → W be a linear transformation. The kernel of L, denoted ker(L), is
+define by
+ker(L) = {v  V | L(v) = 0W}
+• The kernel contains the input vectors that L maps to the zero vector of W.
+• For the transformation defined by A, the kernel is the null space from §3.6:
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 83
+
+
+=== PDF PAGE 84 ===
+Definition of Image and Range
+Let L: V→ W be a linear transformation and let S be a subspace of V. The image
+of S, denoted L(S), is defined by
+L(S) = {w W | w = L(v) for some v S}
+The image of the entire vector space, L(V), is called the range of L.
+• For the transformation defined by A, the range is the column space of A, 
+since Ax is a linear combination of the columns of A.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 84
+
+
+=== PDF PAGE 85 ===
+Theorem 4.1.1
+If L: V→ W is a linear transformation and S is a subspace of V, then
+(1) ker(L) is a subspace of V
+(2) L(S) is a subspace of W
+• In particular, the range L(V) is a subspace of W.
+• For each part, the proof checks that the set is nonempty and is closed under 
+scalar multiplication and vector addition.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 85
+
+=== PDF PAGE 86 ===
+Proof of Theorem 4.1.1: The Kernel
+• Since L(0ᵥ) = 0𝑤, the vector 0ᵥ belongs to ker(L). Thus, ker(L) is nonempty.
+• If v∈ ker(L) and α is a scalar, then
+• Therefore, αv∈ ker(L). If v₁, v₂ ∈ ker(L), then
+• Thus, v₁ + v₂ ∈ ker(L). Both closure conditions hold, so ker(L) is a subspace of V .
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 86
+
+
+=== PDF PAGE 87 ===
+Proof of Theorem 4.1.1: The Image
+• Since S is a subspace, 0ᵥ ∈ S. Hence 0𝑤 = L(0ᵥ) ∈ L(S), so L(S) is nonempty.
+• If w∈ L(S), then w = L(v) for some v∈ S. For any scalar α,
+because αv ∈ S. If w₁ = L(v₁) and w₂ = L(v₂) with v₁, v₂ ∈ S, then
+because v₁ + v₂ ∈ S. Therefore, L(S) is a subspace of W.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 87
+
+
+=== PDF PAGE 88 ===
+Example 11: Kernel of a Projection
+• Let L be the linear operator on ℝ² defined by
+• A vector x belongs to ker(L) if and only if x₁ = 0. The second coordinate is free.
+• Thus, ker(L) is the one-dimensional subspace of ℝ² spanned by e₂. 
+It is the x₂-axis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 88
+
+
+=== PDF PAGE 89 ===
+Example 11: Range of a Projection
+• Every output of L(x) = (x₁, 0)ᵀ is a multiple of e₁. Conversely, any multiple of e₁ 
+is an output, since L((a, 0)ᵀ) = (a, 0)ᵀ.
+• Hence, the range of L is the one-dimensional subspace spanned by e₁, the x₁-axis.
+• The kernel describes inputs sent to zero. The range describes all possible outputs.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 89
+
+
+=== PDF PAGE 90 ===
+Example 12: Determining the Kernel
+• Let L: ℝ³ → ℝ² be defined by L(x) = (x₁ + x₂, x₂ + x₃)ᵀ. 
+Let S be the subspace of ℝ³ spanned by e₁ and e₃.
+• If x∈ ker(L), then
+• Set the free variable x₃ = a. Then x₂ = −a and x₁ = a, so
+• Therefore, ker(L) is a one-dimensional subspace of ℝ³.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 90
+
+
+=== PDF PAGE 91 ===
+Example 12: The Image of S and the Range
+• Since S is spanned by e₁ and e₃, each vector in S has the form
+• The scalars a and b are arbitrary. Thus, every vector in ℝ² occurs as the image of 
+a vector in S.
+• Because S ⊆ ℝ³ and L maps into ℝ², the entire range is also ℝ²: L(ℝ³) = ℝ².
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 91
+
+
+=== PDF PAGE 92 ===
+Example 13: Kernel of Differentiation
+• Let D: P₃ → P₃ be the differentiation operator, defined by D(p(x)) = p′(x).
+• In the textbook notation, P₃ consists of polynomials of degree at most 2. Write p(x) = a 
++ bx + cx² .
+• The derivative is the zero polynomial if and only if b = 0 and c = 0. The constant a is 
+arbitrary.
+• Thus, the kernel consists of all constant polynomials, including the zero polynomial.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 92
+
+
+=== PDF PAGE 93 ===
+Example 13: Range of Differentiation
+• For p(x) = a + bx + cx²  ∈ P₃, the derivative b + 2cx belongs to P₂. Thus D(P₃) ⊆
+P₂.
+• Conversely, every polynomial a + bx ∈ P₂ has an antiderivative in P₃:
+• Therefore, every polynomial in P₂ occurs as an output of D, and
+• Although the codomain is P₃, the range is its subspace P₂. This illustrates the 
+distinction between the specified output space and the outputs that actually occur.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 93
+
+
+=== PDF PAGE 94 ===
+Basis Images and Matrix Representations
+• Section 3.5 describes a vector by its coordinates in a basis. Section 4.1 describes 
+a linear transformation by how it acts on vectors.
+• Linearity means that the images of the basis vectors determine the image of 
+every vector.
+• Section 4.2 now uses coordinate vectors to represent this rule by matrix 
+multiplication.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 94
+
+
+=== PDF PAGE 95 ===
+How Do Matrices Represent Linear Transformations?
+
+
+=== PDF PAGE 96 ===
+Matrices Representing Linear Transformations
+• Section 4.1 showed that each m × n matrix A defines a linear transformation 
+from ℝⁿ to ℝᵐ by multiplying each vector by A.
+• We now establish the converse: 
+every linear transformation from ℝⁿ to ℝᵐ has a matrix representation.
+• For general finite-dimensional vector spaces, the matrix acts on coordinate 
+vectors relative to specified ordered bases.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 96
+
+
+=== PDF PAGE 97 ===
+Theorem 4.2.1
+If L is a linear transformation mapping ℝⁿ to ℝᵐ, there is an m  n matrix A such 
+that
+L(x) = Ax
+for each x ℝn. In fact, the jth column vector of A is given by
+aj = L(ej),  j = 1, 2, …, n
+• Each column records the image of one standard basis vector of the input space.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 97
+
+=== PDF PAGE 98 ===
+Proof of Theorem 4.2.1: Constructing A
+For j = 1, …, n, define aⱼ = L(eⱼ) and let
+A = (aij) = (a1, a2, …, an)
+Each aⱼ belongs to ℝᵐ, so A has m rows and n columns. An arbitrary vector x∈ ℝⁿ 
+has the standard basis expansion
+x = (x1, x2, …, xn)T = x1e1 + x2e2 + … + xnen
+Linearity determines L(x) from the images of these basis vectors.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 98
+
+=== PDF PAGE 99 ===
+Proof of Theorem 4.2.1: Verifying the Representation
+• The equality holds for every x∈ ℝⁿ, so 
+A represents L.
+• Since the standard bases are used for 
+both ℝⁿ and ℝᵐ, A is called the standard 
+matrix representation of L.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 99
+
+
+=== PDF PAGE 100 ===
+Example 1: Images of the Standard Basis Vectors
+Let L: ℝ³ → ℝ² be defined by L(x) = (x₁ + x₂, x₂ + x₃)ᵀ. 
+Find A such that L(x) = Ax for every x∈ ℝ³.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 100
+
+
+
+=
+
+
+
++
++=
+
+
+
+
+
+
+
+
+
+
+== 0
+1
+00
+01)
+0
+0
+1
+()( 11 LL ea
+
+
+
+=
+
+
+
++
++=
+
+
+
+
+
+
+
+
+
+
+== 1
+1
+01
+10)
+0
+1
+0
+()( 22 LL ea
+
+
+
+=
+
+
+
++
++=
+
+
+
+
+
+
+
+
+
+
+== 1
+0
+10
+00)
+1
+0
+0
+()( 33 LL ea
+Thus, A is the standard matrix representation of L.
+Its three columns correspond to the three input 
+coordinates. Its two rows correspond to the
+two output coordinates.
+
+=== PDF PAGE 101 ===
+Example 2: Images under a Rotation
+• Let L: ℝ2→ ℝ2 which rotates each vector by an angle  in the counterclockwise 
+direction.
+• Let L(x) = Ax
+Since a1 = L(e1) = (cos, sin)T, and a2 = L(e2) = (–sin, cos)T
+
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 101
+1, 2
+cos  sin  () sin  cos  A 
+
+−== 
+aa
+
+
+=== PDF PAGE 102 ===
+Coordinates for a Transformation from V to W
+• Let E = {v₁, …, vₙ} be an ordered basis for V and F = {w₁, …, wₘ} an ordered 
+basis for W.
+• Let L: V → W be linear.
+• We seek an m × n matrix A that sends input coordinates in E to output 
+coordinates in F:
+• The matrix acts on coordinates. The transformation L acts on the vectors in V .
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 102
+
+
+=== PDF PAGE 103 ===
+Constructing the Columns for General Ordered 
+Bases
+• For each j = 1, …, n, express the image of vⱼ in the ordered basis F:
+L(vj) = a1jw1 + a2jw2 + … + amjwm
+• The coefficients form column j of A:
+• The target basis has m vectors, so each coordinate column has m entries.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 103
+
+
+=== PDF PAGE 104 ===
+Deriving the Matrix Representation
+• For v = x₁v₁ + ⋯ + xₙvₙ, substitute the basis expansions of L(vⱼ):
+• Thus, with yᵢ = Σⱼ aᵢⱼxⱼ, the coordinate vector of L(v) in F is y = Ax. This proves 
+the representation for every v∈ V.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 104
+( )
+1 1 1 1
+11
+( ) ( ) ( )
+n n n m
+j j j j j ij i
+j j j i
+mn
+ij j i
+ij
+L L x x L x a
+ax
+= = = =
+==
+ = = = 
+= 
+   
+
+v v v w
+w
+ 
+
+=== PDF PAGE 105 ===
+Theorem 4.2.2: Matrix Representation Theorem
+If E = {v1, v2, …, vn} and F = {w1, w2, …, wm} are ordered bases for vector 
+spaces V and W, respectively, then corresponding to each linear transformation L: 
+V→ W there is an m  n matrix A such that
+[L(v)]F = A [v]E for each v V
+A is the matrix representing L relative to the ordered bases E and F. In fact,
+aj = [L(vj)]F j = 1, 2, … , n
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 105
+
+=== PDF PAGE 106 ===
+Interpreting the Coordinate Representation
+• x and y are the coordinate vectors of v and w relative to E and F.
+• L maps v into w if and only if A maps x into y.
+• The chosen ordered bases determine how each vector is represented by its 
+coordinate vector.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 106
+
+
+=== PDF PAGE 107 ===
+Example 3: A Transformation Specified by Basis 
+Vectors
+Let L: ℝ³ → ℝ² be defined by
+Find the matrix A representing L with respect to the ordered bases {e₁, e₂, e₃} and 
+{b₁, b₂}. The output coefficients must be read relative to {b₁, b₂}, in that order.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 107
+
+
+=== PDF PAGE 108 ===
+Example 3: Reading the Output Coordinates
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 108
+  
+
+
+==+=
+
+
+
+
+
+
+
+
+
+
+= 0
+1)(0  1)
+0
+0
+1
+()( 11211 FLLL eabbe
+  
+
+
+==+=
+
+
+
+
+
+
+
+
+
+
+= 1
+0)(1  0)
+0
+1
+0
+()( 22212 FLLL eabbe
+  
+
+
+==+=
+
+
+
+
+
+
+
+
+
+
+= 1
+0)(1  0)
+1
+0
+0
+()( 33213 FLLL eabbe
+
+
+
+= 110
+001A
+
+=== PDF PAGE 109 ===
+Example 4: An Operator in a Nonstandard Basis
+Use the ordered basis {b₁, b₂} from Example 3. Let L: ℝ² → ℝ² be defined by
+L(a b1 + b b2) = (a + b)b1 + 2b b2
+Find the matrix A representing L w. r. t. {b₁, b₂}.
+• L(b1) = L(1b1 + 0b2) = (1+0)b1 + (20)b2
+= 1b1 + 0b2 a1 = [L(b1)]F = (1, 0)T
+• L(b2) = L(0b1 + 1b2) = (0+1)b1 + (21)b2
+= 1b1 + 2b2 a2 = [L(b2)]F = (1, 2)T
+ A=
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 109
+
+
+
+
+20
+11
+
+=== PDF PAGE 110 ===
+Example 5: Matrix Representation of Differentiation
+Let D: P₃ → P₂ be defined by D(p) = p′. Use the ordered bases [x², x, 1] for P₃ and 
+[x, 1] for P₂.
+The coordinate vectors (2, 0)ᵀ, (0, 1)ᵀ, and (0, 0)ᵀ form the columns:
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 110
+100)1(
+110)(
+102)( 2
++=
++=
++=
+xD
+xxD
+xxD
+
+
+
+= 010
+002A
+
+=== PDF PAGE 111 ===
+Example 5: Applying the Matrix to a Polynomial
+• If p(x) = ax² + bx + c, its coordinate vector with respect to [x², x, 1] is (a, b, c)ᵀ.
+• The output coordinates are relative to [x, 1]. Therefore,
+D(ax2 + bx + c) = 2ax + b
+• The 2 × 3 matrix maps three input coefficients to two output coefficients, 
+matching dim P₃ = 3 and dim P₂ = 2.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 111
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+b
+a
+c
+b
+a 2
+010
+002
+
+=== PDF PAGE 112 ===
+Theorem 4.2.3
+Let E = {u1, u2, …, un} and F = {b1, b2, …, bm} be ordered bases for ℝn and ℝm, 
+respectively. If L: ℝn→ℝm is a linear transformation and A is the matrix 
+representing L with respect to E and F, then
+aj = B–1L(uj)  for j = 1, 2, …, n
+where B = (b1, b2, …, bm).
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 112
+
+=== PDF PAGE 113 ===
+Proof of Theorem 4.2.3
+• The jth column of A is the coordinate vector of L(uⱼ) in the target basis F. Thus,
+• The matrix B is nonsingular because its columns form a basis for ℝᵐ. 
+Multiplying by B⁻¹ gives
+• Thus, finding each output coordinate vector is equivalent to solving B aⱼ = L(uⱼ).
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 113
+
+
+=== PDF PAGE 114 ===
+Corollary 4.2.4
+If A is the matrix representing the linear transformation L: Rn→ Rm with respect to 
+the bases 
+E = [u1, u2, …, un] and F = [b1, b2, …, bm], 
+then the reduced row echelon form of (b1, b2, …, bm | L(u1), … , L(un)) is (I | A).
+• One row reduction therefore finds all n columns of the matrix representation at 
+once.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 114
+
+=== PDF PAGE 115 ===
+Proof of Corollary 4.2.4
+Let B = (b₁, …, bₘ). Since B is nonsingular, the augmented matrix is row 
+equivalent to B–1 (B| L(u1), … , L(un)) 
+= ( I | B–1L(u1), … , B–1L(un))
+= ( I | a1, a2, …, an)
+= ( I | A)
+Theorem 4.2.3 identifies the right-hand columns as the columns of A. The identity 
+block supplies a leading 1 in every row, so (I | A) is in reduced row echelon form.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 115
+
+=== PDF PAGE 116 ===
+Example 6: Domain and Codomain Bases
+Let L: ℝ² → ℝ³ be defined by L(x) = (x₂, x₁ + x₂, x₁ − x₂)ᵀ. Find its matrix 
+representation for the ordered bases {u₁, u₂} and {b₁, b₂, b₃}, where
+• First evaluate L at each domain basis vector:
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 116
+1 2 1 2 3
+1 1 113,    and  0 ,  1 ,  1 .21 0 0 1
+              = = = = =                       
+u u b b b
+
+
+
+
+
+
+
+
+
+
+−
+=
+
+
+
+
+
+
+
+
+
+
+−
++=
+
+
+=
+1
+3
+2
+21
+21
+2
+)2
+1()( 1 LL u
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+−
++=
+
+
+=
+2
+4
+1
+13
+13
+1
+)1
+3()( 2 LL u
+
+=== PDF PAGE 117 ===
+Example 6: Row Reduction for the Coordinate 
+Columns and Verification
+• Verify the first and second column by reconstructing L(u₁) and L(u2):
+• Each column gives the correct output coordinates in the specified codomain basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 117
+
+
+
+
+
+
+
+
+
+
+−
+−−
+→
+
+
+
+
+
+
+
+
+
+
+−
+=
+21
+24
+31
+  
+100
+010
+001
+21
+43
+12
+  
+100
+110
+111
+))( )(|( 21 uu LLB
+
+
+
+
+
+
+
+
+
+
+−
+−−
+=
+21
+24
+31
+A
+
+
+
+
+
+
+
+
+
+
+−
+=
+
+
+
+
+
+
+
+
+
+
+−
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+−
+=−+−=
+1
+3
+2
+1
+1
+1
+0
+4
+4
+0
+0
+1
+4)( 3211 bbbuL
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+
++
+
+
+
+
+
+
+
+
+
+−
+=++−=
+2
+4
+1
+2
+2
+2
+0
+2
+2
+0
+0
+3
+223)( 3212 bbbuL
+
+=== PDF PAGE 118 ===
+Application 1: Storing a Picture as a Matrix
+• A picture in the plane can be stored as a sequence of 
+vertices. Their x-coordinates form the first row and their 
+y-coordinates the second. Connect successive points by 
+straight lines.
+• For the triangle with vertices (0, 0), (1, 1), and (1, −1), 
+use
+• The last column repeats the first vertex to close the 
+triangle.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 118
+
+
+
+
+−= 0110
+0110T
+
+
+=== PDF PAGE 119 ===
+Application 1: Dilations and Contractions
+• A linear operator L(x) = cx is a dilation if c > 1 
+and a contraction if 0 < c < 1. Its matrix is cI, 
+where I is the 2 × 2 identity matrix.
+• Multiplying every column of T by 1.5 enlarges 
+the triangle by that factor.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 119
+
+
+=== PDF PAGE 120 ===
+Application 1: Reflection about the x-Axis
+• Let Lₓ reflect a vector about the x-axis. Its action on the standard basis is
+• Therefore, the matrix representation is
+• The first coordinate stays the same and the second changes sign.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 120
+
+
+=== PDF PAGE 121 ===
+Application 1: Reflection about the y-Axis
+• For reflection about the y-axis, Lᵧ(e₁) = −e₁ and 
+Lᵧ(e₂) = e₂.
+• Hence
+• The columns of AT are the reflected vertices.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 121
+
+
+=== PDF PAGE 122 ===
+Application 1: Rotation of the Triangle
+• A counterclockwise rotation about the origin through θ 
+has matrix
+• For θ = 60°, multiply T by this matrix. The columns of 
+AT are the rotated vertices.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 122
+cos  sin  
+sin  cos  A 
+
+−=
+cos  sin  0 1 1 0  sin  cos  0 1 1 0
+0 cos  sin  cos  sin  0
+0 sin  cos  sin  cos  0
+AT 
+
+   
+   
+−   =    −   
+−+= +−
+
+=== PDF PAGE 123 ===
+Application 1: Translations
+• A translation by a vector a has the form
+• If a ≠ 0, this mapping is not a linear transformation. In particular,
+• Consequently, no 2 × 2 matrix A can satisfy Ax = x + a for every x∈ ℝ².
+• Computer graphics uses homogeneous coordinates to carry out translations by 
+matrix multiplication.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 123
+
+
+=== PDF PAGE 124 ===
+Application 1: Homogeneous Coordinates
+• In homogeneous coordinates, represent (x₁, x₂)ᵀ by the vector (x₁, x₂, 1)ᵀ. When 
+plotting the point, ignore the third coordinate.
+• Replace a 2 × 2 matrix by a 3 × 3 matrix that retains its first two rows and 
+columns and attaches the third row and column of the 3 × 3 identity matrix.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 124
+
+
+
+
+
+
+
+
+
+
+→
+
+
+
+1
+2
+1
+2
+1
+x
+x
+x
+x
+
+
+=== PDF PAGE 125 ===
+Application 1: A Translation Matrix
+• For a translation by a = (6, 2)ᵀ, replace the first two entries of the third column 
+of the 3 × 3 identity matrix by 6 and 2:
+• This 3 × 3 matrix defines a linear transformation on ℝ³. On vectors with third 
+coordinate 1, it produces the required translation in the plane.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 125
+
+
+=== PDF PAGE 126 ===
+Application 1: Translating a Stored Figure
+• Figure 4.2.4(a) shows a stick figure 
+generated from a 3 × 81 matrix S. Each 
+column contains homogeneous 
+coordinates of one stored point. With the 
+preceding translation matrix A, the 
+columns of AS give the translated figure 
+in Figure 4.2.4(b).
+• The same matrix multiplication 
+transforms every stored point. Successive 
+drawings create the effect of animation.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 126
+
+
+=== PDF PAGE 127 ===
+How Does a Change of Basis 
+Relate Two Matrix Representations?
+
+
+=== PDF PAGE 128 ===
+Different Matrices for the Same Linear Operator
+• If L is a linear operator on an n-dimensional vector space V , the matrix 
+representation of L depends on the ordered basis chosen for V .
+• Using different bases can produce different n × n matrices representing the same 
+operator. This section characterizes the relationship between these matrices.
+• Section 3.5 gives the transition matrix for changing coordinates. Section 4.2 
+gives the matrix of an operator in a chosen basis. Here we combine these two 
+ideas.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 128
+
+=== PDF PAGE 129 ===
+Introductory Example: The Standard Matrix
+• Let L be the linear transformation mapping ℝ² into itself defined by
+• Apply L to the standard basis vectors. Their images become the columns of the 
+representing matrix:
+• Thus, L(x) = Ax, and A represents L with respect to {e₁, e₂}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 129
+
+
+=== PDF PAGE 130 ===
+Introductory Example: Images of a Different Basis
+• Use the new basis vectors             and
+• Their images in standard coordinates are
+• To construct the new representing matrix, express these images as linear 
+combinations of u₁ and u₂.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 130
+
+
+
+= 1
+1
+1u
+
+
+
+−= 1
+1
+2u
+
+
+
+=
+
+
+
+
+
+
+== 2
+2
+1
+1 11
+02)( 11 uu AL
+
+
+
+−=
+
+
+−
+
+
+
+== 0
+2
+1
+1 11
+02)( 22 uu AL
+
+=== PDF PAGE 131 ===
+Introductory Example: The Transition Matrices
+• The transition matrix from {u₁, u₂} to {e₁, e₂} has the new basis vectors as 
+columns:
+• Its determinant is 2, so the vectors form a basis and U is nonsingular. 
+The reverse transition matrix is
+• Multiplication by U⁻¹ converts standard coordinates into coordinates with respect 
+to {u₁, u₂}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 131
+
+
+
+ −== 11
+11) ( 21 uu ,U
+
+
+
+
+−=−
+2
+1
+2
+1
+2
+1
+2
+1
+1U
+
+=== PDF PAGE 132 ===
+Introductory Example: The New Representing 
+Matrix
+• Therefore, L(u₁) = 2u₁ + 0u₂ and L(u₂) = −u₁ + u₂. These coordinate vectors 
+form the columns of
+• The operator is the same, but its representing matrix changes with the basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 132
+
+
+
+=
+
+
+
+
+
+
+
+−=−
+0
+2
+2
+2 )(
+2
+1
+2
+1
+2
+1
+2
+1
+1
+1 uLU
+11
+221
+2 11
+22
+21( )  01UL− −−    ==    −    
+u
+
+
+
+ −= 10
+12B
+
+=== PDF PAGE 133 ===
+Introductory Example: The Relation B = U⁻¹AU
+• The two columns of B are U⁻¹Au₁ and U⁻¹Au₂. Hence
+• A represents L in the standard basis. B represents L in {u₁, u₂}. 
+U changes coordinates from {u₁, u₂} to the standard basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 133
+
+
+=== PDF PAGE 134 ===
+Theorem 4.3.1: A Change of Representing Matrix
+Let E = {v1, v2, …, vn} and F = {w1, w2, …, wn} be two ordered bases for a vector 
+space V and let L be a linear operator on V. Let S be the transition matrix 
+representing the change from F to E. If A is the matrix representing L w. r. t. E and 
+B is the matrix representing L w. r. t. F, then B = S–1AS.
+• The direction of S is from F to E. Its inverse changes coordinates from E to F.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 134
+
+=== PDF PAGE 135 ===
+Proof of Theorem 4.3.1: Coordinates in Two Bases
+• Let x be any vector in Rn and let x = [v]F
+v = x1w1 + x2w2 + … + xnwn
+• Since S is the transition matrix representing the change from F to E
+Let 
+y = Sx, t = Ay, z = Bx
+• Let x be any vector in Rn and let y = [v]E
+v = y1v1 + y2v2 + … + ynvn
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 135
+
+=== PDF PAGE 136 ===
+Proof of Theorem 4.3.1: Transforming the 
+Coordinates
+• Since A represents L w. r. t. E and B represents L w. r. t. F, we have
+t = [L(v)]E and z = [L(v)]F
+• The transition matrix from E to F is S⁻¹. Consequently,
+S–1t = z
+• Substituting y = Sx, t = Ay, and z = Bx gives
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 136
+
+
+=== PDF PAGE 137 ===
+Proof of Theorem 4.3.1: Equality of the Matrices
+• The preceding identity holds for every x∈ ℝⁿ:
+S–1ASx = Bx
+• In particular, set x equal to each standard basis vector eⱼ.
+• Then the jth columns of S⁻¹AS and B are equal, for every
+j = 1, …, n.
+S–1ASx = B
+• Thus, changing the basis changes the representing matrix by 
+this product.  The linear operator L itself remains the same.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 137
+
+
+=== PDF PAGE 138 ===
+The Identity Transformation and Change of Basis
+• The transition matrix S represents the identity 
+transformation I relative to the input basis F and 
+the output basis E. Its inverse represents I relative 
+to E and F.
+• The same operator L can be written as the 
+composition I◦ L ◦ I. Starting with coordinates in 
+F, the corresponding matrix product is B = S–1AS.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 138
+The rightmost factor S acts first, A 
+applies L in basis E, and S⁻¹ 
+returns the output coordinates to 
+basis F.
+
+=== PDF PAGE 139 ===
+Similar Matrices
+Let A and B be two n  n matrices. B is said to be similar to A if there exists a 
+nonsingular matrix S such that B = S–1AS.
+• Similarity is symmetric. Multiplying on the left by S and on the right by S⁻¹ 
+gives A = SBS–1 = (S –1)–1B(S–1)
+• Thus, A is similar to B, and we may simply say that A and B are similar matrices.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 139
+
+=== PDF PAGE 140 ===
+Similarity and Representations of One Operator
+• Theorem 4.3.1 shows that matrices representing the same linear operator in two 
+ordered bases are similar.
+• Conversely, suppose A represents L with respect to {v₁, …, vₙ} and B = S⁻¹AS for 
+a nonsingular matrix S. Define
+• As in §3.5, nonsingularity of S implies that {w₁, …, wₙ} is a basis. The matrix S
+changes coordinates from this basis to {v₁, …, vₙ}.
+• Theorem 4.3.1 then shows that B represents L in the ordered basis {w₁, …, wₙ}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 140
+
+
+=== PDF PAGE 141 ===
+The Converse: Why the New Vectors Form a Basis
+• Suppose a linear combination of the vectors defined by the columns of S is zero.
+• Substituting their definitions gives
+• Since v₁, …, vₙ are linearly independent, every coefficient in parentheses is zero.
+• Equivalently, Sx = 0.
+• Nonsingularity of S gives x = 0, so w₁, …, wₙ are linearly independent. There are 
+n of them in the n-dimensional space V . Therefore, they form a basis, and S is the 
+transition matrix from this basis to {v₁, …, vₙ}.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 141
+
+
+=== PDF PAGE 142 ===
+Example 1: Differentiation in Two Polynomial Bases
+Let D be the differentiation operator on P3. Find the matrix B representing D with 
+respect to [1, x, x2] and the matrix A representing D with respect to [1, 2x, 4x2 – 2].
+• First use the standard polynomial basis [1, x, x² ]:
+• Each column contains the coordinates of the derivative of the corresponding 
+basis element.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 142
+22
+2
+2
+0210)(
+0011)(
+0010)1(
+xxxD
+xxxD
+xxD
+++=
+++=
+++=
+
+
+
+
+
+
+
+
+
+
+=
+000
+200
+010
+B
+
+=== PDF PAGE 143 ===
+Example 1: The Second Representing Matrix
+• Apply D to the ordered basis [1, 2x, 4x² − 2] and express the derivatives in the 
+same basis:
+• The operator D is unchanged. The coordinate vectors of its basis images depend 
+on the ordered basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 143
+)24(02410)24(
+)24(02012)2(
+)24(02010)1(
+22
+2
+2
+−++=−
+−++=
+−++=
+xxxD
+xxxD
+xxD
+
+
+
+
+
+
+
+
+
+
+=
+000
+400
+020
+A
+
+=== PDF PAGE 144 ===
+Example 1: The Transition Matrix and Its Direction
+• As in Example 6 of §3.5, the transition matrix from [1, 2x, 4x² − 2] to [1, x, x²] 
+is
+• Here B represents D in [1, x, x² ], and A represents D in [1, 2x, 4x² − 2]. 
+Therefore the similarity relation with the textbook’s labels is
+A = SBS–1
+• S changes the input coordinates to the standard polynomial basis, B applies 
+differentiation, and S⁻¹ returns the result to the other basis.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 144
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+ −
+= −
+4
+100
+02
+10
+2
+101
+   and    
+400
+020
+201
+1SS
+
+=== PDF PAGE 145 ===
+Example 1: Verification by Matrix Multiplication
+• This agrees with the matrix constructed directly from 
+D(1), D(2x), and D(4x² − 2).
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 145
+
+
+=== PDF PAGE 146 ===
+Example 2: A Simpler Representing Matrix
+L: ℝ3→ℝ3 defined by L(x) = Ax, where
+Thus, the matrix A represents L with respect to {e1, e2, e3}, find the matrix 
+representing L with respect to {y1, y2, y3} where
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 146
+
+
+
+
+
+
+
+
+
+
+=
+211
+211
+022
+A
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+−
+=
+
+
+
+
+
+
+
+
+
+
+−=
+1
+1
+1
+ ,
+1
+1
+2
+ ,
+0
+1
+1
+321 yyy
+
+=== PDF PAGE 147 ===
+Example 2: Images of the Three Basis Vectors
+• Each image is already a scalar multiple of its own basis vector, so the coordinates are 
+immediate.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 147
+1 1 1 2 3
+2 2 0 1 0
+( ) 1 1 2  1 0 0 0 0
+1 1 2 0 0
+LA
+     
+     = = − = = + +     
+          
+y y y y y
+2 2 1 2 3
+2 2 0 2 2
+( ) 1 1 2  1 1 0 1 0
+1 1 2 1 1
+LA
+−−     
+     = = = = + +     
+          
+y y y y y
+32133 400
+4
+4
+4
+1
+1
+1
+ 
+211
+211
+022
+)( yyyyy ++=
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== AL
+
+=== PDF PAGE 148 ===
+Example 2: A Diagonal Representation
+• The coordinate vectors of these images give the columns of
+• Thus, D represents the same operator L with respect to {y₁, y₂, y₃}. It is simpler 
+than the standard matrix A.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 148
+
+
+
+
+
+
+
+
+
+
+=
+400
+010
+000
+D
+
+=== PDF PAGE 149 ===
+Example 2: The Transition Matrix Y
+• The transition matrix from {y₁, y₂, y₃} to the standard basis is
+• Its determinant is −3 ≠ 0, confirming that the three vectors form a basis. Direct 
+row reduction gives
+• Theorem 4.3.1 gives D = S⁻¹AS. The next calculation verifies the matrix obtained 
+from the basis images.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 149
+
+
+
+
+
+
+
+
+
+
+−
+−
+==
+110
+111
+121
+) , ,( 321 yyyS
+DASS =
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+= −
+400
+010
+000
+ 
+110
+111
+121
+ 
+211
+211
+022
+ 
+110
+3
+1
+3
+1
+3
+1
+3
+2
+3
+1
+3
+11
+DASS =
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+= −
+400
+010
+000
+ 
+110
+111
+121
+ 
+211
+211
+022
+ 
+110
+3
+1
+3
+1
+3
+1
+3
+2
+3
+1
+3
+11
+DASS =
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+= −
+400
+010
+000
+ 
+110
+111
+121
+ 
+211
+211
+022
+ 
+110
+3
+1
+3
+1
+3
+1
+3
+2
+3
+1
+3
+11
+
+=== PDF PAGE 150 ===
+Example 2: Verification of D = S⁻¹AS
+• The direct basis-image method and the transition-matrix method give the same 
+diagonal matrix.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 150
+DASS =
+
+
+
+
+
+
+
+
+
+
+=
+
+
+
+
+
+
+
+
+
+
+−
+−
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+−
+−
+= −
+400
+010
+000
+ 
+110
+111
+121
+ 
+211
+211
+022
+ 
+110
+3
+1
+3
+1
+3
+1
+3
+2
+3
+1
+3
+11
+
+=== PDF PAGE 151 ===
+Why a Simpler Representation Is Useful
+• In Example 2, L is represented by a diagonal matrix D in the basis {y₁, y₂, y₃}.
+• Multiplication by D acts separately on the three coordinates.
+• It is easier to compute Dx and Dⁿx than to repeatedly multiply by the original 
+matrix A. A suitable basis makes the action of the operator easier to understand.
+CE2005 Linear Algebra: Coordinates, Rank, and Linear Transformations Chia-Ru Chung (NCU CSIE) 151
+
+
+=== PDF PAGE 152 ===
+Thank You!
