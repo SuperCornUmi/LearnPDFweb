@@ -4,7 +4,7 @@ const {pathToFileURL}=require('url');const path=require('path'),assert=require('
 const browser=await chromium.launch({headless:true,channel:'chrome'});
 const page=await browser.newPage({viewport:{width:1905,height:910}}),errors=[];
 page.on('pageerror',e=>errors.push(String(e)));
-const url=pathToFileURL(path.resolve('website/index.html')).href,B='#/linear-algebra/lecture-5';
+const url=pathToFileURL(path.resolve('index.html')).href,B='#/linear-algebra/lecture-5';
 await page.goto(url+B+'/pages/1');
 await page.waitForSelector('#reader-stream');
 assert(await page.locator('.page-section').count()===87);

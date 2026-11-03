@@ -102,6 +102,8 @@ standard_version: "1.0"
 
 ## 9. 目錄、內容共用與擴充
 
+網站入口固定在專案根目錄 `index.html`，其餘網頁資產放 `website/`。此結構支援 GitHub Pages repository 根目錄發布；保留 `.nojekyll`。HTML 與動態連結均以根目錄入口為基準使用相對網址，不使用站台絕對路徑，避免 repository 子路徑失效。教材生成器、Markdown 入口連結與下載檔也須同步更新；本機修改不代表已推送或部署。
+
 ```text
 raw/pdfs/<原始檔或版本檔>.pdf
 raw/metadata/<source-id>.json
@@ -112,7 +114,9 @@ notes/<course-id>/<unit-id>.md
 presentations/<course-id>/<unit-id>/slides.md
 presentations/<course-id>/<unit-id>/speaker-notes.md
 teaching/<course-id>/<unit-id>/        結構化教材、生成工具及 manifest
-website/                            網站入口、資產、課程／章節資料及下載檔
+index.html                          專案根目錄網頁入口
+.nojekyll                           靜態檔案發布標記
+website/                            樣式、程式、資產、教材資料及下載檔
 work/<source-id>/                    擷取、OCR、影像及閱讀進度
 ```
 

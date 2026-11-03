@@ -51,7 +51,7 @@ coverage: "PDF pp. 1–87；每頁皆有對應章節"
 
 # 線性代數 Lecture 5：線性獨立與基底
 
-[Wiki 索引](../../wiki/index.md) · [原始 PDF](../../raw/pdfs/CE2005_Lecture_5.pdf) · [HTML 閱讀入口](../../website/index.html)
+[Wiki 索引](../../wiki/index.md) · [原始 PDF](../../raw/pdfs/CE2005_Lecture_5.pdf) · [HTML 閱讀入口](../../index.html)
 
 本筆記依 PDF 實體頁序逐頁翻譯、講解與補充。翻譯採忠實的中文意譯，保留各頁數學內容；頁尾重複課程資訊不逐次抄寫。講解與補充是教學重述及推導，不冒充原文。矩陣以逐列列表表示，例如 [[a,b],[c,d]]；ᵀ 表示轉置。封面、分隔頁與結尾頁均保留。
 
@@ -92,7 +92,7 @@ for s in slides:
 (DECK/'slides.md').write_text(deck,encoding='utf-8')
 (DECK/'speaker-notes.md').write_text(speaker,encoding='utf-8')
 data=dict(pages=pages,slides=slides,notes=notes,references=[
-    dict(title='CE2005 Lecture 5｜原始 PDF',url='../raw/pdfs/CE2005_Lecture_5.pdf',detail='主要來源 · 87 頁 · 鍾佳儒 · 2026-10-14'),
+    dict(title='CE2005 Lecture 5｜原始 PDF',url='raw/pdfs/CE2005_Lecture_5.pdf',detail='主要來源 · 87 頁 · 鍾佳儒 · 2026-10-14'),
     dict(title='MIT Lecture 9｜官方逐字稿',url='https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/0fab20a14c050d85ef29563cd6c52d37_MIT18_06S10_L09.pdf',detail='已查證補充 · 僅 pp. 1–3 · 查閱 2026-11-03'),
     dict(title='MIT 18.06SC｜課程摘要入口',url='https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/resources/mit18_06scf11_ses1-9sum/',detail='延伸閱讀候選 · 未完整匯入 · 本版未使用其內容')])
 (SITE/'lesson-data.js').write_text('window.LESSON = '+json.dumps(data,ensure_ascii=False)+';\n',encoding='utf-8')

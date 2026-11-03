@@ -49,3 +49,10 @@
 - 更新 Wiki 索引、總覽、根 README、網站說明與 Lecture 5 維護說明；生成教材中記錄 standard_version=1.0，manifest 納入統一標準的輸入雜湊。
 - 明示目前網站仍為單一 Lecture 5 實作，後續代理必須實際擴充課程／章節載入及入口，保留既有內容；沒有把標準文件當成已實現的自動匯入功能。
 - 驗證範圍：文件連結與標準／索引／代理入口一致性、教材重建及 manifest 版本資訊；本次沒有更改網站互動程式，沿用上一筆已完成的瀏覽器驗證。
+
+## [2026-11-03] query | 網站入口移至根目錄，準備 GitHub Pages
+
+- 將 website/index.html 移至專案根目錄 index.html，其他網頁資產仍保留於 website/。
+- 調整 HTML 與動態程式中的 CSS、JavaScript、教材資料、封面、原頁影像、下載、PDF 與 Wiki 路徑，以根入口為基準，使用可相容 repository 子路徑的相對網址。
+- 更新教材生成器、筆記入口連結、Wiki 索引／總覽／主題、README、AGENTS.md 與統一標準；新增 .nojekyll，保留本機離線使用。
+- 本次為本機檔案與發布結構調整，未建立 GitHub repository、推送或實際部署。驗收包含根入口瀏覽器操作、文件連結及模擬 GitHub Pages 子路徑的資產載入。

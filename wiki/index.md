@@ -42,4 +42,4 @@
 - [Lecture 5 逐頁中文筆記](../notes/linear-algebra/lecture-5.md)：完整對應 PDF pp. 1–87 的翻譯、講解與補充。
 - [Lecture 5 精簡簡報](../presentations/linear-algebra/lecture-5/slides.md)：15 張核心內容。
 - [Lecture 5 簡報講解稿](../presentations/linear-algebra/lecture-5/speaker-notes.md)：對應 15 張投影片的教學重點。
-- [知識課堂 HTML 入口](../website/index.html)：課程 → 章節 → 模式切換，本機離線閱讀。
+- [知識課堂 HTML 入口](../index.html)：課程 → 章節 → 模式切換，本機離線閱讀。

@@ -11,7 +11,7 @@ coverage: "PDF pp. 1–87；每頁皆有對應章節"
 
 # 線性代數 Lecture 5：線性獨立與基底
 
-[Wiki 索引](../../wiki/index.md) · [原始 PDF](../../raw/pdfs/CE2005_Lecture_5.pdf) · [HTML 閱讀入口](../../website/index.html)
+[Wiki 索引](../../wiki/index.md) · [原始 PDF](../../raw/pdfs/CE2005_Lecture_5.pdf) · [HTML 閱讀入口](../../index.html)
 
 本筆記依 PDF 實體頁序逐頁翻譯、講解與補充。翻譯採忠實的中文意譯，保留各頁數學內容；頁尾重複課程資訊不逐次抄寫。講解與補充是教學重述及推導，不冒充原文。矩陣以逐列列表表示，例如 [[a,b],[c,d]]；ᵀ 表示轉置。封面、分隔頁與結尾頁均保留。
 

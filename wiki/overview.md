@@ -22,7 +22,7 @@ source_ids: [src-20261103-ce2005-lecture-5, web-20261103-mit-lecture9]
 
 目前已匯入 1 份 PDF：[CE2005 Lecture 5](sources/src-20261103-ce2005-lecture-5.md)，共 87 頁。研究入口為[線性代數](topics/線性代數.md)，目前涵蓋線性獨立、函數判準、基底與維度。
 
-已建立 [87 頁中文教學筆記](../notes/linear-algebra/lecture-5.md)、15 張精簡簡報與 [HTML 課程入口](../website/index.html)。另有 1 筆 [MIT 官方逐字稿的部分查證](sources/web-20261103-mit-lecture9.md)，僅核對 pp. 1–3 的自由變數與獨立性定義，尚未完整匯入。
+已建立 [87 頁中文教學筆記](../notes/linear-algebra/lecture-5.md)、15 張精簡簡報與 [HTML 課程入口](../index.html)。另有 1 筆 [MIT 官方逐字稿的部分查證](sources/web-20261103-mit-lecture9.md)，僅核對 pp. 1–3 的自由變數與獨立性定義，尚未完整匯入。
 
 ## 目前主要結論
 

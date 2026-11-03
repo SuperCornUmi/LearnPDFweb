@@ -7,7 +7,7 @@ const assert=require('assert');
 const browser=await chromium.launch({headless:true,channel:'chrome'});
 const page=await browser.newPage({viewport:{width:1440,height:1000}});
 const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
-const url=pathToFileURL(path.resolve('website/index.html')).href;
+const url=pathToFileURL(path.resolve('index.html')).href;
 await page.goto(url);await page.screenshot({path:'work/website-home.png',fullPage:true});
 await page.getByRole('link',{name:/MATHEMATICS/}).click();
 assert((await page.title()).includes('線性代數'));

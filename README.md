@@ -8,7 +8,7 @@
 
 ## 教學網站
 
-開啟 [知識課堂](website/index.html)，依「課程 → 章節」進入。首個單元為線性代數 Lecture 5，含 87 頁逐頁中文翻譯與講解、15 張精簡簡報及講解稿、完整筆記、概念圖與互動示意。網站支援離線閱讀，沒有上傳原始文件。
+開啟 [知識課堂](index.html)，依「課程 → 章節」進入。首個單元為線性代數 Lecture 5，含 87 頁逐頁中文翻譯與講解、15 張精簡簡報及講解稿、完整筆記、概念圖與互動示意。網站支援離線閱讀，沒有上傳原始文件。
 
 - [Markdown 逐頁筆記](notes/linear-algebra/lecture-5.md)
 - [簡報逐張內容](presentations/linear-algebra/lecture-5/slides.md) · [簡報講解稿](presentations/linear-algebra/lecture-5/speaker-notes.md)
@@ -49,7 +49,8 @@ wiki/standards/    集中且有版本的專案製作標準
 notes/             按課程與單元保存完整逐頁中文教材
 presentations/     精簡簡報逐張內容及講解稿
 teaching/          結構化教材、生成工具、來源雜湊及交付紀錄
-website/           課程／章節／模式切換的本機 HTML
+index.html         網頁入口，支援本機及 GitHub Pages 根目錄發布
+website/           網頁樣式、程式、教材資料、影像及下載檔
 templates/         頁面範本
 work/              可重建的擷取文字、OCR 與頁面影像
 ```
