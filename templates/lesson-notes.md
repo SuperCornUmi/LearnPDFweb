@@ -4,7 +4,7 @@ course: "穩定課程 ID"
 unit: "穩定單元 ID"
 created: YYYY-MM-DD
 updated: YYYY-MM-DD
-standard_version: "1.0"
+standard_version: "1.1"
 status: draft
 source_ids: []
 coverage: "指定範圍、總頁數、已完成與未完成頁段"
@@ -24,7 +24,7 @@ coverage: "指定範圍、總頁數、已完成與未完成頁段"
 
 ## 逐頁內容
 
-依 page-explanation.md 的結構逐頁填寫，不用單一摘要代替完整講解。
+依 page-explanation.md 的結構逐頁填寫：翻譯完整涵蓋實質內文，講解交代問題、符號、關鍵步驟與理由、結果意義；不用單一摘要代替完整講解。補充只在有助理解當頁時提供，無需要就省略整段。依頁面複雜度調整深度，維持桌面／手機可讀，不能裁切必要內容。
 
 ## 參考文獻
 

@@ -3,6 +3,8 @@ from pathlib import Path
 import json, hashlib, re
 
 ROOT = Path(__file__).resolve().parents[3]
+standard_text=(ROOT/'wiki/standards/PDF課程教材製作標準.md').read_text(encoding='utf-8')
+standard_version=re.search(r'^standard_version: "([^"]+)"$',standard_text,re.M).group(1)
 HERE = Path(__file__).resolve().parent
 SITE = ROOT / 'website'
 NOTES = ROOT / 'notes/linear-algebra'
@@ -17,7 +19,7 @@ for n, line in enumerate(lines, 1):
     parts=line.split('｜')
     assert len(parts)==4, (n, len(parts))
     title, translation, explanation, supplement=parts
-    assert all(parts)
+    assert all(parts[:3])
     pages.append(dict(page=n,title=title,translation=translation,explanation=explanation,supplement=supplement))
 
 slides=[]
@@ -43,7 +45,7 @@ title: "線性代數 Lecture 5：逐頁中文講解"
 course: linear-algebra
 unit: lecture-5
 created: 2026-11-03
-updated: 2026-11-03
+updated: 2026-11-04
 standard_version: "1.0"
 source_ids: [src-20261103-ce2005-lecture-5, web-20261103-mit-lecture9]
 coverage: "PDF pp. 1–87；每頁皆有對應章節"
@@ -53,17 +55,19 @@ coverage: "PDF pp. 1–87；每頁皆有對應章節"
 
 [Wiki 索引](../../wiki/index.md) · [原始 PDF](../../raw/pdfs/CE2005_Lecture_5.pdf) · [HTML 閱讀入口](../../index.html)
 
-本筆記依 PDF 實體頁序逐頁翻譯、講解與補充。翻譯採忠實的中文意譯，保留各頁數學內容；頁尾重複課程資訊不逐次抄寫。講解與補充是教學重述及推導，不冒充原文。矩陣以逐列列表表示，例如 [[a,b],[c,d]]；ᵀ 表示轉置。封面、分隔頁與結尾頁均保留。
+本筆記依 PDF 實體頁序逐頁翻譯與講解，必要時才附當頁相關的補充。翻譯採忠實的中文意譯，保留各頁數學內容；頁尾重複課程資訊不逐次抄寫。講解展開推理與計算步驟，不冒充原文。矩陣以逐列列表表示，例如 [[a,b],[c,d]]；ᵀ 表示轉置。封面、分隔頁與結尾頁均保留。
 
 第 19 頁係數順序有原文勘誤；第 22、63、76、77 頁亦附閱讀條件或排字提醒。PDF 原檔保持不變。
 
 ## 逐頁目錄
 
 '''
+intro=intro.replace('standard_version: "1.0"',f'standard_version: "{standard_version}"')
 toc='\n'.join(f'- [PDF p. {p["page"]}：{p["title"]}](#pdf-p-{p["page"]})' for p in pages)
 chunks=[]
 for p in pages:
     translation_md=p['translation'].replace('W[f₁,…,fₙ](x)', '`W[f₁,…,fₙ](x)`')
+    supplement_md=('\n### 教學補充／提醒\n\n'+p['supplement']+'\n') if p['supplement'] else ''
     chunks.append(f'''<a id="pdf-p-{p['page']}"></a>
 ## PDF p. {p['page']}｜{p['title']}
 
@@ -77,9 +81,7 @@ for p in pages:
 
 {p['explanation']}
 
-### 教學補充／提醒
-
-{p['supplement']}
+{supplement_md}
 ''')
 notes=intro+toc+'\n\n'+'\n\n'.join(chunks)+'\n\n'+refs
 (NOTES/'lecture-5.md').write_text(notes,encoding='utf-8')
@@ -100,7 +102,7 @@ data['meta']=json.loads((HERE/'config.json').read_text(encoding='utf-8'))
 (HERE/'lesson.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
 for name,body in [('lecture-5-notes.md',notes),('lecture-5-slides.md',deck),('lecture-5-speaker-notes.md',speaker)]:
     (SITE/'downloads'/name).write_text(body,encoding='utf-8')
-manifest=dict(standard_version='1.0',course='linear-algebra',unit='lecture-5',date='2026-11-03',updated='2026-11-04',pdf_pages=87,slides=len(slides),source_ids=['src-20261103-ce2005-lecture-5','web-20261103-mit-lecture9'],inputs={})
+manifest=dict(standard_version=standard_version,course='linear-algebra',unit='lecture-5',date='2026-11-03',updated='2026-11-04',pdf_pages=87,slides=len(slides),source_ids=['src-20261103-ce2005-lecture-5','web-20261103-mit-lecture9'],inputs={})
 for path in [HERE/'pages.txt',HERE/'slides.txt',HERE/'config.json',ROOT/'raw/pdfs/CE2005_Lecture_5.pdf']+list((ROOT/'wiki').rglob('*.md')):
     manifest['inputs'][path.relative_to(ROOT).as_posix()]=hashlib.sha256(path.read_bytes()).hexdigest()
 (HERE/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')

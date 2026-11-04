@@ -2,13 +2,15 @@
 from pathlib import Path
 import json,sys,hashlib,re
 ROOT=Path(__file__).resolve().parent.parent
+standard_text=(ROOT/'wiki/standards/PDF課程教材製作標準.md').read_text(encoding='utf-8')
+standard_version=re.search(r'^standard_version: "([^"]+)"$',standard_text,re.M).group(1)
 unit=Path(sys.argv[1]).resolve()
 assert unit.is_relative_to(ROOT/'teaching')
 meta=json.loads((unit/'config.json').read_text(encoding='utf-8'))
 pages=[]
 for n,line in enumerate((unit/'pages.txt').read_text(encoding='utf-8').strip().splitlines(),1):
     fields=line.split('｜')
-    assert len(fields)==4 and all(fields),(n,fields)
+    assert len(fields)==4 and all(fields[:3]),(n,fields)
     pages.append(dict(zip(['page','title','translation','explanation','supplement'],[n]+fields)))
 assert len(pages)==meta['expectedPages']
 slides=[]
@@ -26,16 +28,16 @@ course: {course}
 unit: {slug}
 created: 2026-11-03
 updated: 2026-11-04
-standard_version: "1.0"
+standard_version: "{standard_version}"
 source_ids: [{meta['sourceId']}, web-20261104-mit-coordinates-spaces]
-coverage: "PDF pp. 1–{len(pages)}；每頁皆有翻譯、講解與補充"
+coverage: "PDF pp. 1–{len(pages)}；每頁翻譯與講解，必要時補充"
 ---
 
 # {meta['courseName']} {meta['label']}：{meta['title']}
 
 [Wiki 索引](../../wiki/index.md) · [原始 PDF](../../{meta['pdf']}) · [來源摘要](../../{meta['sourceWiki']}) · [HTML 閱讀入口](../../index.html#/{course}/{slug}/pages/1)
 
-本筆記按 PDF 實體頁序完整翻譯與講解，採繁體中文意譯並保留數學內容，重複頁尾不逐次抄寫。row 指橫列、column 指直欄；矩陣以逐列列表表示。原文、觀念講解、教學補充分段，原文錯誤另標勘誤，不改原 PDF。封面在網站以自製圖呈現，原作者與日期保留於來源資料。
+本筆記按 PDF 實體頁序完整翻譯與講解，採繁體中文意譯並保留數學內容，重複頁尾不逐次抄寫。row 指橫列、column 指直欄；矩陣以逐列列表表示。原文與觀念講解分段，講解展開推理與計算；只在有助理解當頁時加補充。原文錯誤另標勘誤，不改原 PDF。封面在網站以自製圖呈現，原作者與日期保留於來源資料。
 
 ## 逐頁目錄
 
@@ -44,6 +46,7 @@ toc='\n'.join(f'- [PDF p. {p["page"]}：{p["title"]}](#pdf-p-{p["page"]})' for p
 body=[]
 for p in pages:
     n=p['page']
+    supplement_md=('\n### 教學補充／提醒\n\n'+p['supplement']+'\n') if p['supplement'] else ''
     body.append(f'''<a id="pdf-p-{n}"></a>
 ## PDF p. {n}｜{p['title']}
 
@@ -57,9 +60,7 @@ for p in pages:
 
 {p['explanation']}
 
-### 教學補充／提醒
-
-{p['supplement']}
+{supplement_md}
 ''')
 refs='## 參考文獻\n\n### 已使用並納入 Wiki\n\n'
 for r in meta['references']:
@@ -80,7 +81,7 @@ data=dict(meta=meta,pages=pages,slides=slides,notes=notes,references=meta['refer
 (unit/'lesson.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
 js='window.LESSONS=window.LESSONS||{};window.LESSONS['+json.dumps(meta['key'])+']='+json.dumps(data,ensure_ascii=False)+';\n'
 (ROOT/meta['script']).write_text(js,encoding='utf-8')
-manifest=dict(standard_version='1.0',course=course,unit=slug,updated='2026-11-04',pdf_pages=len(pages),slides=len(slides),source_ids=[meta['sourceId'],'web-20261104-mit-coordinates-spaces'],inputs={})
+manifest=dict(standard_version=standard_version,course=course,unit=slug,updated='2026-11-04',pdf_pages=len(pages),slides=len(slides),source_ids=[meta['sourceId'],'web-20261104-mit-coordinates-spaces'],inputs={})
 for p in [unit/'pages.txt',unit/'slides.txt',unit/'config.json',ROOT/meta['pdf']]+list((ROOT/'wiki').rglob('*.md')):
     manifest['inputs'][p.relative_to(ROOT).as_posix()]=hashlib.sha256(p.read_bytes()).hexdigest()
 (unit/'manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2),encoding='utf-8')

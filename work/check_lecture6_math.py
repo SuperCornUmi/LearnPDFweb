@@ -45,7 +45,7 @@ assert inverse(S)==matrix([[0,-1,1],[F(-1,3),F(-1,3),F(2,3)],[F(1,3),F(1,3),F(1,
 root=Path(__file__).resolve().parents[1]
 data=json.loads((root/'teaching/linear-algebra/lecture-6/lesson.json').read_text(encoding='utf-8'))
 assert [p['page'] for p in data['pages']]==list(range(1,153))
-assert len(data['slides'])==20 and all(p[k] for p in data['pages'] for k in ['translation','explanation','supplement'])
+assert len(data['slides'])==20 and all(p[k] for p in data['pages'] for k in ['translation','explanation'])
 meta=json.loads((root/'raw/metadata/src-20261103-ce2005-lecture-6.json').read_text(encoding='utf-8'))
 assert hashlib.sha256((root/meta['stored_path']).read_bytes()).hexdigest()==meta['sha256']
 assert hashlib.sha256(Path(meta['original_path']).read_bytes()).hexdigest()==meta['sha256']

@@ -6,7 +6,7 @@
 
 ## 專案標準
 
-- [PDF 課程教材與網站製作標準 v1.0](standards/PDF課程教材製作標準.md)：新 PDF 從保存、Wiki、逐頁翻譯講解、簡報講稿到網站與驗收的完整標準；開始新增教材前必讀。
+- [PDF 課程教材與網站製作標準 v1.1](standards/PDF課程教材製作標準.md)：新 PDF 從保存、Wiki、完整翻譯與詳細講解、選用補充、簡報講稿到網站與驗收的完整標準；開始新增教材前必讀。
 - [代理工作規範](../AGENTS.md)：規定預設任務、來源保護及標準的讀取與執行。
 
 ## 來源摘要
@@ -47,7 +47,7 @@
 
 ## 教學材料
 
-- [Lecture 5 逐頁中文筆記](../notes/linear-algebra/lecture-5.md)：完整對應 PDF pp. 1–87 的翻譯、講解與補充。
+- [Lecture 5 逐頁中文筆記](../notes/linear-algebra/lecture-5.md)：完整對應 PDF pp. 1–87 的翻譯、詳細講解及必要補充。
 - [Lecture 5 精簡簡報](../presentations/linear-algebra/lecture-5/slides.md)：15 張核心內容。
 - [Lecture 5 簡報講解稿](../presentations/linear-algebra/lecture-5/speaker-notes.md)：對應 15 張投影片的教學重點。
 - [知識課堂 HTML 入口](../index.html)：課程 → 章節 → 模式切換，本機離線閱讀。
