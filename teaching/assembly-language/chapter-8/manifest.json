@@ -1,0 +1,36 @@
+{
+  "standard_version": "1.1",
+  "updated": "2026-11-05",
+  "course": "assembly-language",
+  "unit": "chapter-8",
+  "source_ids": [
+    "src-20261105-assembly-ch8",
+    "web-20261105-microsoft-masm-procedures"
+  ],
+  "pdf_pages": 51,
+  "slides": 16,
+  "coverage": "PDF pp. 1–51",
+  "native_masm_execution": false,
+  "inputs": {
+    "teaching/assembly-language/chapter-8/config.json": "8af018310b15972b24ecf7c71dbde05eee515589242ef7c49bd1ba798b36e4c6",
+    "teaching/assembly-language/chapter-8/content.json": "c1e87adc8a53dcaee874161068a05acb9b34518f9dde685e0bc497ad3e3987cb",
+    "teaching/assembly-language/chapter-8/slides.json": "d524065defc21e5dd9c4fc7ce245e41adaef0278abc067472b341241c1effc23",
+    "teaching/assembly-language/chapter-8/build.py": "1d1674568b1f802daf0e3090921c12382928c45cea4c65d6c5ed54ee5cf7c9f1",
+    "raw/pdfs/1151 ch8.pdf": "d0ba6fff2d0cb5dd3e155f267023b8d1cf4a516418b1a38b130b9842d6735be4",
+    "wiki/standards/PDF課程教材製作標準.md": "8815f79b10ddd0798e114fd5f4e35c9ce6fcdce7e72256b2bbe778f40338215d",
+    "raw/web/microsoft-masm-procedures-20261105.md": "6dcda7b9e8c8d7e0408004fb61c5983f9db6eb9eda0c7bbe8e3aa7b6e554c2c5",
+    "wiki/sources/src-20261105-assembly-ch8.md": "94990090c8a1576a202985f1d492508e08476b70284d8d0deb6471e3d1ec03d2",
+    "wiki/sources/web-20261105-microsoft-masm-procedures.md": "6302ed8a005d4dde497b2634c52e443e9c45ec1178d388c81b6dfa57bf7a5480",
+    "wiki/concepts/堆疊框架與呼叫慣例.md": "120526a76b30d0c21691df1a98d8ff5e17eb57b0ba0e4ec4d0d69dcf6f5c884e",
+    "wiki/concepts/值與位址及MASM定址.md": "775cc48b6317f12c4ab17f0cf5ef928e7e603e80fbef5e533b2fed0b68eab7f8",
+    "wiki/topics/組合語言.md": "212eaeeb88eb0d903ab9a5bc0555359e114fdc9452cab69e9491fa3e88d69cda",
+    "wiki/questions/CountMatches如何區分位置與跨位置匹配.md": "1a797ca5e8d55400a59d9e73910eca405259645376436e3c228df7ce722087eb",
+    "teaching/assembly-language/chapter-8/check_models.py": "01460988e344c206caa198a8ed922ee0b70de0abb2f246c8ad21ced604994ce9",
+    "website/assembly-diagrams.js": "6c401c331be4cd38d7db7ed9c4944251934f43e21d781bc6536a93fc2ade4565",
+    "website/assets/assembly-ch8/cover.svg": "e2eff09f2769e5ec778714029ef12d4c28473af92cbb69bd82dbfc71f9856f51",
+    "presentations/assembly-language/chapter-8/diagrams.md": "b8ad595b492c009da5366bba99049a0eab8e8258a2de169e328928eb4d55d006",
+    "website/app.js": "7a2b7bf6437c2caf2a81b769f2c98c79c61a597fadba39ba9766a98213239095",
+    "website/reader.css": "c8695f234da2300d1e4c0354212cbca3a8b271fcdea61514c24b7d6e9f1c010f",
+    "index.html": "419912d3ba813492010c10e01930893b9ce6d656088f53b11bf02b389445358d"
+  }
+}

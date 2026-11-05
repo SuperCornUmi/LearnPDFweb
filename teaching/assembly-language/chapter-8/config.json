@@ -1,0 +1,106 @@
+{
+  "key": "assembly-language/chapter-8",
+  "course": "assembly-language",
+  "courseName": "組合語言",
+  "courseTag": "COMPUTER SYSTEMS · x86",
+  "courseDescription": "從資料、位址與堆疊，理解程序如何運作。",
+  "unit": "chapter-8",
+  "label": "第八章",
+  "number": 8,
+  "title": "進階程序與堆疊框架",
+  "english": "Advanced Procedures",
+  "pdf": "raw/pdfs/1151 ch8.pdf",
+  "assetBase": "website/assets/assembly-ch8/",
+  "sourceWiki": "wiki/sources/src-20261105-assembly-ch8.md",
+  "sourceId": "src-20261105-assembly-ch8",
+  "externalSourceId": "web-20261105-microsoft-masm-procedures",
+  "downloads": "website/downloads/assembly-chapter-8",
+  "script": "website/lessons/assembly-chapter-8.js",
+  "groups": [
+    [
+      "程序介面",
+      1,
+      8
+    ],
+    [
+      "堆疊與參數",
+      9,
+      20
+    ],
+    [
+      "區域變數與框架",
+      21,
+      30
+    ],
+    [
+      "MASM 呼叫與定址",
+      31,
+      40
+    ],
+    [
+      "程式追蹤",
+      41,
+      45
+    ],
+    [
+      "多模組",
+      46,
+      49
+    ],
+    [
+      "作業與比對",
+      50,
+      51
+    ]
+  ],
+  "diagrams": "assembly",
+  "expectedPages": 51,
+  "references": [
+    {
+      "title": "組合語言第八章｜原始 PDF",
+      "url": "raw/pdfs/1151 ch8.pdf",
+      "detail": "主要來源 · PDF pp. 1–51 · Kip R. Irvine · 2015 版投影片與課堂增補混編"
+    },
+    {
+      "title": "Microsoft Learn｜INVOKE",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/invoke?view=msvc-170",
+      "detail": "2026-11-05 有限查證：正文與語法；32-bit MASM 的適用範圍"
+    },
+    {
+      "title": "Microsoft Learn｜PROC",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/proc?view=msvc-170",
+      "detail": "2026-11-05 有限查證：語法與 Remarks；含 x64 FRAME，未使用其完整例程"
+    },
+    {
+      "title": "Microsoft Learn｜PROTO",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/proto?view=msvc-170",
+      "detail": "2026-11-05 有限查證：定義、語法與參數；原型與語言慣例"
+    },
+    {
+      "title": "Microsoft Learn｜LOCAL",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/local-masm?view=msvc-170",
+      "detail": "2026-11-05 有限查證：程序內 LOCAL 的語法與生命期"
+    },
+    {
+      "title": "Microsoft Learn｜OPTION",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/option-masm?view=msvc-170",
+      "detail": "2026-11-05 有限查證：選項列表中的 PROC／PROLOGUE／EPILOGUE"
+    },
+    {
+      "title": "Microsoft Learn｜PUBLIC",
+      "url": "https://learn.microsoft.com/en-us/cpp/assembler/masm/public-masm?view=msvc-170",
+      "detail": "2026-11-05 有限查證：定義與語法；跨模組可見性"
+    },
+    {
+      "title": "Microsoft Learn｜__stdcall",
+      "url": "https://learn.microsoft.com/en-us/cpp/cpp/stdcall?view=msvc-170",
+      "detail": "僅正文及 Remarks 表：右至左、callee 清引數；未匯入範例"
+    },
+    {
+      "title": "Microsoft Learn｜x64 calling convention",
+      "url": "https://learn.microsoft.com/en-us/cpp/build/x64-calling-convention?view=msvc-170",
+      "detail": "僅 defaults、alignment、parameter passing：釐清本章與 Windows x64 範圍；其餘未使用"
+    }
+  ],
+  "referenceNote": "51 頁完整對應；保留原教材與遮答案頁，勘誤及適用條件另列於來源與 notes。程式碼未經 MASM／Irvine32 原生組譯執行，模型驗證與網站驗收分別記錄。外部文獻需連網；使用範圍見 Wiki。"
+}

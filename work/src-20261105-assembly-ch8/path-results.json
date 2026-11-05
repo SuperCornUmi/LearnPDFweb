@@ -1,0 +1,6 @@
+{
+  "mount": "/sample-repo/",
+  "local_resources": 64,
+  "all_status_200": true,
+  "errors": []
+}

@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-05",
+  "kind": "Python arithmetic/algorithm models only",
+  "array_pairs": 5,
+  "results": "passed",
+  "push_esp": [
+    "0019FF54",
+    "0019FF52",
+    "0019FF50",
+    "0019FF4C"
+  ],
+  "native_masm_execution": false
+}

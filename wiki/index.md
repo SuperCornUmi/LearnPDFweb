@@ -17,9 +17,14 @@
 - [CE2005 Lecture 6：座標、秩與線性轉換](sources/src-20261103-ce2005-lecture-6.md)：152 頁完整閱讀，從換基底到相似矩陣，附原文勘誤。
 - [MIT：座標與子空間補充查證](sources/web-20261104-mit-coordinates-spaces.md)：官方課程指定段落核對座標、值域與核；部分閱讀。
 
+- [組合語言第八章：進階程序](sources/src-20261105-assembly-ch8.md)：51 頁完整閱讀，含堆疊、具名參數、定址、模組與作業勘誤。
+- [Microsoft：MASM 有限查證](sources/web-20261105-microsoft-masm-procedures.md)：8 個官方頁面指定段落，區分 32 位元語法與 x64 範圍。
+
 ## 主題綜整
 
 - [線性代數](topics/線性代數.md)：串連線性獨立、基底、維度與函數判準的學習主線。
+
+- [組合語言](topics/組合語言.md)：由值／位址、框架到程序介面與模組的學習路線。
 
 ## 概念
 
@@ -33,6 +38,9 @@
 - [線性轉換的核與值域](concepts/線性轉換的核與值域.md)：線性條件、單射、滿射與秩零度。
 - [矩陣表示與相似](concepts/矩陣表示與相似.md)：由基底像建立矩陣，並追蹤換基底方向。
 
+- [堆疊框架與呼叫慣例](concepts/堆疊框架與呼叫慣例.md)：從 PUSH／CALL 推導 EBP 偏移與清理責任。
+- [值、位址與 MASM 定址](concepts/值與位址及MASM定址.md)：MOV、LEA、OFFSET、ADDR 與指標的區別。
+
 ## 實體
 
 尚無頁面。
@@ -45,6 +53,8 @@
 
 - [如何選擇獨立性判定方法？](questions/如何選擇獨立性判定方法.md)：向量、多項式與函數的解題方法表及常見誤解。
 
+- [CountMatches 如何區分位置與跨位置匹配？](questions/CountMatches如何區分位置與跨位置匹配.md)：基本 2 與加分 5 的證據及演算法條件。
+
 ## 教學材料
 
 - [Lecture 5 逐頁中文筆記](../notes/linear-algebra/lecture-5.md)：完整對應 PDF pp. 1–87 的翻譯、詳細講解及必要補充。
@@ -55,3 +65,7 @@
 - [Lecture 6 逐頁中文筆記](../notes/linear-algebra/lecture-6.md)：PDF pp. 1–152 全部對應。
 - [Lecture 6 精簡簡報](../presentations/linear-algebra/lecture-6/slides.md) · [20 張講解稿](../presentations/linear-algebra/lecture-6/speaker-notes.md)。
 - [Lecture 6 圖解整理](../presentations/linear-algebra/lecture-6/diagrams.md)：座標流向、相似交換圖及幾何互動對照。
+
+- [組合語言第八章逐頁教材](../notes/assembly-language/chapter-8.md)：51 頁完整翻譯與講解。
+- [第八章精簡簡報](../presentations/assembly-language/chapter-8/slides.md) · [16 張講稿](../presentations/assembly-language/chapter-8/speaker-notes.md) · [堆疊與比對圖解](../presentations/assembly-language/chapter-8/diagrams.md)。
+- [第八章網站入口](../index.html#/assembly-language/chapter-8/pages/1) · [交付與驗收](../teaching/assembly-language/chapter-8/delivery.md)。

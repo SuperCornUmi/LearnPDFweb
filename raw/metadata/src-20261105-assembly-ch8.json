@@ -1,0 +1,19 @@
+{
+  "source_id": "src-20261105-assembly-ch8",
+  "imported": "2026-11-05",
+  "original_path": "C:/Users/miu99/Downloads/1151 ch8.pdf",
+  "source_file": "raw/pdfs/1151 ch8.pdf",
+  "sha256": "d0ba6fff2d0cb5dd3e155f267023b8d1cf4a516418b1a38b130b9842d6735be4",
+  "pages": 51,
+  "title": "Chapter 8: Advanced Procedures",
+  "authors": [
+    "Kip R. Irvine"
+  ],
+  "published": null,
+  "book_edition_year": 2015,
+  "pdf_created": "2023-10-31",
+  "version": "7th Edition, Global Edition; mixed 5/e slides and course exercises",
+  "course": "組合語言",
+  "unit": "第八章",
+  "extraction": "pypdf text; Poppler rendered all pages; visual review recorded separately"
+}

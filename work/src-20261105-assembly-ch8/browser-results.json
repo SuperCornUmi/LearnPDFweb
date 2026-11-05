@@ -1,0 +1,13 @@
+{
+  "date": "2026-11-05",
+  "checks": [
+    "51 page images loaded, page sections/selector/code blocks present",
+    "focus preference/reload, page position, independent scroll, TOC search, jump and zoom",
+    "16 slides sequential click stable scroll/buttons, keyboard and fullscreen",
+    "continuous notes, fenced code, Markdown toggle, download target and print layout",
+    "stack 8 stages, sample/empty/negative arrays and validation errors",
+    "1882x960, 1255x640, 390x844, 768x900 all modes no page overflow; full source image height desktop",
+    "both existing linear algebra units, original page assets and diagrams preserved"
+  ],
+  "errors": []
+}
